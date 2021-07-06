@@ -9,8 +9,10 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: () {onBtnPressed;},
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+        ),
       ),
     );
   }

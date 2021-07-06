@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/api.dart';
 import 'package:untitled1/custom_widgets.dart';
+import 'package:untitled1/otp.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final emailController =TextEditingController();
   final passwordController =TextEditingController();
+  String message = '';
 
   @override
   void dispose() {
@@ -53,7 +56,30 @@ class _LoginPageState extends State<LoginPage> {
                       },),
                     SizedBox(height: 10.0,),
                    CustomButton(btnText: 'Login',
-                     onBtnPressed:(){} ,),
+                     onBtnPressed:() async{
+                     if(_formKey.currentState!.validate()){
+                       var email =emailController.text;
+                       var password = passwordController.text;
+                       setState(() {
+                         message = 'Please wait...';
+                       });
+                       var res = await loginUser(email, password);
+                       if(res.containesKey('status')){
+                         setState(() {
+                           message=res['status_text'];
+                         });
+                         if(res['status' == 200]){
+                           Navigator.push(context, MaterialPageRoute(builder: (context){
+                             return OtpPage();
+                           }));
+                         }
+                       }else{
+
+                       }
+                     }
+                     } ,),
+                    SizedBox(height: 10.0,),
+                    Text(message),
                   ],
                 )
                 ),
