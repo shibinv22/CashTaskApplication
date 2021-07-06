@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/login.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: Home(),
-  ));
+  runApp(MyApp());
 }
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Container(),
+    return MaterialApp(
+      home: LoginPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
