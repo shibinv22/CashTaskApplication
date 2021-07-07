@@ -1,3 +1,4 @@
+//--no-sound-null-safety
 import 'package:flutter/material.dart';
 import 'package:untitled1/login.dart';
 
@@ -14,4 +15,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

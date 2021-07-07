@@ -3,7 +3,7 @@ import 'dart:convert';
 
 Future loginUser(String email,String password) async {
   String url ='https://fenix-auth.mercurydev.tk/login';
-  final response = await http.post(url,
+  final response = await http.post(Uri.parse(url),
   headers: {"Accept" : "Application.json"},
   body: {'email':email,'password':password});
   var convertedDataToJson = jsonDecode(response.body);
