@@ -21,7 +21,7 @@ class CustomButton extends StatelessWidget {
           ],
         ),
       ),
-      color: Colors.lightBlue,
+      color: Color(0xff2FC3C5),
       onPressed: () => onBtnPressed,
       shape: const StadiumBorder(),
     );

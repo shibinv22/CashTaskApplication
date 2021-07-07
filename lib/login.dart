@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled1/api.dart';
 import 'package:untitled1/custom_widgets.dart';
 import 'package:untitled1/otp.dart';
+
+import 'network/api.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -55,18 +56,20 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           SizedBox(height: 10.0),
                           TextFormField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  fillColor: Colors.grey[200],
-                                  filled: true),
-                              controller: emailController,
-                              validator: (value) {}
-                              //   if(value.isEmpty){
-                              //     return 'Email cannot be empty..';
-                              //   }
-                              //   return null;
-                              // },
-                              ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              fillColor: Colors.grey[200],
+                              filled: true,
+                              hintText: 'Enter your Email',
+                            ),
+                            controller: emailController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Email cannot be blank';
+                              }
+                              return null;
+                            },
+                          ),
                           SizedBox(
                             height: 20.0,
                           ),
@@ -87,11 +90,16 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 fillColor: Colors.grey[200],
-                                filled: true),
+                                filled: true,
+                                hintText: 'Enter password'),
                             controller: passwordController,
                             validator: (value) {
-                              if (value!.isNotEmpty) {
-                                return 'Password cannot be empty..';
+                              if (value == null || value.isEmpty) {
+                                return 'Password is required';
+                              } else if (value.length < 6) {
+                                return 'Password should be atleast 6 characters ';
+                              } else if (value.length > 15) {
+                                return "Password should not be greater than 15 characters";
                               }
                               return null;
                             },
@@ -109,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                 "Password?",
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: Colors.lightBlue,
+                                    color: Color(0xff2FC3C5),
                                     fontWeight: FontWeight.bold),
                               )
                             ],
@@ -117,32 +125,28 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(height: 35.0),
                           CustomButton(
                             btnText: 'Login',
-                            onBtnPressed: validationMethod(),
+                            onBtnPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                var email = emailController.text;
+                                var password = passwordController.text;
+                                setState(() {
+                                  message = 'Please wait...';
+                                });
+                                var res = await loginUser(email, password);
+                                if (res.containsKey('status')) {
+                                  setState(() {
+                                    message = res['status_text'];
+                                  });
+                                  if (res['status' == 200]) {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return OtpPage();
+                                    }));
+                                  }
+                                }
+                              }
+                            },
                           ),
-
-                          // onBtnPressed: () async {
-                          //   if (_formKey.currentState!.validate()) {
-                          //     print('Error');
-                          //   } else {
-                          //     var email = emailController.text;
-                          //     var password = passwordController.text;
-                          //     setState(() {
-                          //       message = 'Please wait...';
-                          //     });
-                          //     var res = await loginUser(email, password);
-                          //     if (res.containesKey('status')) {
-                          //       setState(() {
-                          //         message = res['status_text'];
-                          //       });
-                          //       if (res['status' == 200]) {
-                          //         Navigator.push(context,
-                          //             MaterialPageRoute(builder: (context) {
-                          //           return OtpPage();
-                          //         }));
-                          //       }
-                          //     }
-                          //   }
-
                           SizedBox(
                             height: 10.0,
                           ),
@@ -166,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                                 maxLines: 1,
                                 style: TextStyle(
                                     fontSize: 15.0,
-                                    color: Colors.lightBlue,
+                                    color: Color(0xff2FC3C5),
                                     fontWeight: FontWeight.bold),
                               )
                             ],
@@ -180,9 +184,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  validationMethod() {
-    print('Hi');
   }
 }
