@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:untitled1/custom_widgets.dart';
 
 class OtpPage extends StatelessWidget {
@@ -11,7 +12,7 @@ class OtpPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 80.0),
+              SizedBox(height: 110.0),
               Container(
                   child: Image(image: AssetImage('assets/correct_otp.png'))),
               SizedBox(height: 5.0),
@@ -25,7 +26,7 @@ class OtpPage extends StatelessWidget {
                     style: TextStyle(fontSize: 8.0),
                   ),
                 ),
-                color: Colors.pinkAccent,
+                color: Color(0xff2FC3C5),
                 shape: const StadiumBorder(),
               ),
               SizedBox(height: 10.0),
@@ -53,10 +54,13 @@ class OtpPage extends StatelessWidget {
               ),
               //OTP BOXES
               Padding(
-                padding: const EdgeInsets.all(35.0),
+                padding: const EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 10.0),
                 child: TextFormField(
                   maxLength: 6,
-                  cursorHeight: 20.0,
+                  showCursor: false,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       fillColor: Colors.grey[200],
@@ -98,7 +102,7 @@ class OtpPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Padding(
-                padding: const EdgeInsets.all(35.0),
+                padding: const EdgeInsets.all(50.0),
                 child: CustomButton(btnText: 'Verify', onBtnPressed: () {}),
               )
             ],

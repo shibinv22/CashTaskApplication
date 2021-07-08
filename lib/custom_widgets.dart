@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String btnText;
-  final Function? onBtnPressed;
+  final Function onBtnPressed;
   CustomButton({required this.btnText, required this.onBtnPressed});
 
   @override
