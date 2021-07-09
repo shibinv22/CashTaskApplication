@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled1/ui/widgets/custom_button.dart';
+import 'package:untitled1/ui/widgets/customButton.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class IncorrectOtpPage extends StatelessWidget {
@@ -15,8 +15,7 @@ class IncorrectOtpPage extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 110.0),
-              Container(
-                  child: Image(image: AssetImage('assets/incorrect_otp.png'))),
+              Container(child: Image(image: AssetImage(ImageData.otpFailure))),
               SizedBox(height: 5.0),
               MaterialButton(
                 height: 10.0,

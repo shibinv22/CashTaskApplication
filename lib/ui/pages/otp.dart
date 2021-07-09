@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled1/ui/widgets/custom_button.dart';
+import 'package:untitled1/ui/widgets/customButton.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class OtpPage extends StatelessWidget {
@@ -14,8 +14,7 @@ class OtpPage extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 110.0),
-              Container(
-                  child: Image(image: AssetImage('assets/correct_otp.png'))),
+              Container(child: Image(image: AssetImage(ImageData.otpSuccess))),
               SizedBox(height: 5.0),
               MaterialButton(
                 height: 10.0,

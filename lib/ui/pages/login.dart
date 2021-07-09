@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
 import 'package:untitled1/ui/pages/otp.dart';
+import 'package:untitled1/ui/widgets/textHeading.dart';
 import 'package:untitled1/ui/widgets/text_form_field.dart';
 import 'package:untitled1/utils/constants.dart';
 
@@ -19,6 +20,15 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   String message = '';
 
+  String? Function(String?) emailValidation = (chuma) {
+    if (chuma == null || chuma.isEmpty) {
+      return 'Email cannot be blank';
+    } else if (!chuma.contains('@') || (chuma.length < 4)) {
+      return 'Not a valid Email';
+    }
+    return null;
+  };
+
   @override
   void dispose() {
     emailController.dispose();
@@ -33,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             SizedBox(height: 140.0),
-            Container(child: Image(image: AssetImage(Images.logo))),
+            Container(child: Image(image: AssetImage(ImageData.logo))),
             Expanded(
                 child: ListView(
               children: [
@@ -43,86 +53,75 @@ class _LoginPageState extends State<LoginPage> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 305.0),
-                            child: Container(
-                              child: Text(
-                                'Email',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                maxLines: 1,
-                              ),
-                            ),
+                          TitleTextField(
+                            text: 'Email',
                           ),
                           SizedBox(height: 10.0),
                           CustomTextFormField(
-                              hintText: 'Enter Email',
-                              validation: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Email cannot be blank';
-                                } else if (!value.contains('@') ||
-                                    (value.length < 4)) {
-                                  return 'Not a valid Email';
-                                }
-                                return null;
-                              },
-                              controller: emailController),
-                          SizedBox(height: 50.0),
-                          TextFormField(
-                            autovalidate: true,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              fillColor: Colors.grey[200],
-                              filled: true,
                               hintText: 'Enter your Email',
-                            ),
-                            controller: emailController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Email cannot be blank';
-                              } else if (!value.contains('@') ||
-                                  (value.length < 4)) {
-                                return 'Not a valid Email';
-                              }
-                              return null;
-                            },
-                          ),
+                              validation: StringFunctions.emailValidation,
+                              controller: emailController),
+                          // TextFormField(
+                          //   autovalidate: true,
+                          //   decoration: InputDecoration(
+                          //     border: InputBorder.none,
+                          //     fillColor: Colors.grey[200],
+                          //     filled: true,
+                          //     hintText: 'Enter your Email',
+                          //   ),
+                          //   controller: emailController,
+                          //   validator: (value) {
+                          //     if (value == null || value.isEmpty) {
+                          //       return 'Email cannot be blank';
+                          //     } else if (!value.contains('@') ||
+                          //         (value.length < 4)) {
+                          //       return 'Not a valid Email';
+                          //     }
+                          //     return null;
+                          //   },
+                          // ),
                           SizedBox(
                             height: 20.0,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 280.0),
-                            child: Container(
-                              child: Text(
-                                'Password',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                maxLines: 1,
-                              ),
-                            ),
+                          TitleTextField(
+                            text: 'Password',
                           ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(right: 280.0),
+                          //   child: Container(
+                          //     child: Text(
+                          //       'Password',
+                          //       style: TextStyle(
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //       maxLines: 1,
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(height: 10.0),
-                          TextFormField(
-                            autovalidate: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                fillColor: Colors.grey[200],
-                                filled: true,
-                                hintText: 'Enter password'),
-                            controller: passwordController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Password is required';
-                              } else if (value.length < 6) {
-                                return 'Password should be atleast 6 characters ';
-                              } else if (value.length > 20) {
-                                return "Password should not be greater than 20 characters";
-                              }
-                              return null;
-                            },
-                          ),
+                          CustomTextFormField(
+                              hintText: 'Enter your password',
+                              validation: StringFunctions.passwordValidation,
+                              controller: passwordController),
+                          // TextFormField(
+                          //   autovalidate: true,
+                          //   decoration: InputDecoration(
+                          //       border: InputBorder.none,
+                          //       fillColor: Colors.grey[200],
+                          //       filled: true,
+                          //       hintText: 'Enter password'),
+                          //   controller: passwordController,
+                          //   validator: (value) {
+                          //     if (value == null || value.isEmpty) {
+                          //       return 'Password is required';
+                          //     } else if (value.length < 6) {
+                          //       return 'Password should be atleast 6 characters ';
+                          //     } else if (value.length > 20) {
+                          //       return "Password should not be greater than 20 characters";
+                          //     }
+                          //     return null;
+                          //   },
+                          // ),
                           SizedBox(height: 15.0),
                           Row(
                             children: [
@@ -136,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                                 "Password?",
                                 maxLines: 1,
                                 style: TextStyle(
-                                  color: Color(0xff2FC3C5),
+                                  color: AppColors.appColor,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -156,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ],
                               ),
                             ),
-                            color: Color(0xff2FC3C5),
+                            color: AppColors.appColor,
                             shape: const StadiumBorder(),
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
@@ -211,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
                                 maxLines: 1,
                                 style: TextStyle(
                                     fontSize: 15.0,
-                                    color: Color(0xff2FC3C5),
+                                    color: AppColors.appColor,
                                     fontWeight: FontWeight.bold),
                               )
                             ],
@@ -225,25 +224,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  bool validateAndSave() {
-    final form = _formKey.currentState;
-    if ((form!.validate())) {
-      form.save();
-      return true;
-    }
-    return false;
-  }
-
-  emailValidation(value) {
-    if (value == null || value.isEmpty) {
-      return 'Password is required';
-    } else if (value.length < 6) {
-      return 'Password should be atleast 6 characters ';
-    } else if (value.length > 20) {
-      return "Password should not be greater than 20 characters";
-    }
-    return null;
   }
 }

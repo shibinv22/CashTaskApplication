@@ -1,8 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:untitled1/ui/widgets/custom_button.dart';
-import 'package:untitled1/ui/widgets/transactioncategories.dart';
+import 'package:untitled1/ui/widgets/customAppBar.dart';
+import 'package:untitled1/ui/widgets/customButton.dart';
+import 'package:untitled1/ui/widgets/transactionCategories.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class DashBoard extends StatefulWidget {
@@ -26,47 +26,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        toolbarHeight: 60.0,
-        title: Container(
-          color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'mercury.',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0),
-              ),
-              Text(
-                'cash',
-                style: TextStyle(
-                    color: AppColors.appColor,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0),
-              ),
-            ],
-          ),
-        ),
-        leading: Icon(
-          Icons.message,
-          color: AppColors.appColor,
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.notifications_none_sharp,
-              color: Colors.grey[300],
-              size: 25.0,
-            ),
-            onPressed: () {},
-          )
-        ],
-        centerTitle: true,
-        backgroundColor: Colors.white,
-      ),
+      appBar: CustomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

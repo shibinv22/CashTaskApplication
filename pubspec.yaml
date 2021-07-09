@@ -24,7 +24,6 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.3
-  pin_entry_text_field: 0.1.4
 
 
 
@@ -50,9 +49,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/
-
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

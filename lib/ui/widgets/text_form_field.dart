@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  final bool validate;
+  final bool autovalidate;
   final String? Function(String?) validation;
   final TextEditingController controller;
   final String? hintText;
+  final InputBorder? inputBorder;
 
   CustomTextFormField({
-    this.validate = true,
+    this.autovalidate = true,
     required this.validation,
     required this.controller,
     this.hintText,
+    this.inputBorder,
   });
 
   @override
