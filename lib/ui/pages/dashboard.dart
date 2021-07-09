@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:untitled1/ui/widgets/custom_button.dart';
 import 'package:untitled1/ui/widgets/transactioncategories.dart';
 import 'package:untitled1/utils/constants.dart';
 
@@ -162,8 +163,14 @@ class _DashBoardState extends State<DashBoard> {
                     Text('Hi'),
                     Text('Hi'),
                   ],
-                ),
+                ),2021
               ),
+            ),
+            CustomButton(
+              text: 'Profile',
+              onBtnPressed: () {
+                print('Profile clicked');
+              },
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
