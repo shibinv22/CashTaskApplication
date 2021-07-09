@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled1/custom_widgets.dart';
 import 'package:flutter/services.dart';
+import 'package:untitled1/ui/widgets/custom_button.dart';
+import 'package:untitled1/utils/constants.dart';
 
 class IncorrectOtpPage extends StatelessWidget {
   const IncorrectOtpPage({Key? key}) : super(key: key);
@@ -89,7 +90,7 @@ class IncorrectOtpPage extends StatelessWidget {
                       maxLines: 1,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff2FC3C5),
+                        color: AppColors.appColor,
                       ),
                     ),
                     SizedBox(width: 2.0),
@@ -109,7 +110,7 @@ class IncorrectOtpPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(50.0),
-                child: CustomButton(btnText: 'Try Again', onBtnPressed: () {}),
+                child: CustomButton(text: 'Try Again', onBtnPressed: () {}),
               )
             ],
           ),

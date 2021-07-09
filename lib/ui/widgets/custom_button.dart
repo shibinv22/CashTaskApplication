@@ -1,28 +1,34 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled1/utils/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  final String btnText;
-  final Function onBtnPressed;
-  CustomButton({required this.btnText, required this.onBtnPressed});
+  final String? text;
+  final void Function()? onBtnPressed;
+  final double padding;
+
+  const CustomButton({
+    this.text,
+    this.onBtnPressed,
+    this.padding = 20.0,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(padding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              btnText,
+              text ?? '',
               style: TextStyle(color: Colors.white),
             ),
           ],
         ),
       ),
-      color: Color(0xff2FC3C5),
-      onPressed: () => onBtnPressed,
+      color: AppColors.appColor,
+      onPressed: onBtnPressed,
       shape: const StadiumBorder(),
     );
   }

@@ -2,31 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled1/custom_widgets.dart';
-import 'package:untitled1/model/login_model.dart';
-import 'package:untitled1/otp.dart';
+import 'package:untitled1/network/api.dart';
+import 'package:untitled1/ui/pages/otp.dart';
+import 'package:untitled1/ui/widgets/text_form_field.dart';
+import 'package:untitled1/utils/constants.dart';
 
-import 'network/api.dart';
-
-class Dummy extends StatefulWidget {
-  const Dummy({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
   @override
-  _DummyState createState() => _DummyState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _DummyState extends State<Dummy> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  late LoginRequestModel loginRequestModel;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   String message = '';
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    loginRequestModel = new LoginRequestModel(email: '', password: '');
-  }
 
   @override
   void dispose() {
@@ -42,8 +33,7 @@ class _DummyState extends State<Dummy> {
         child: Column(
           children: [
             SizedBox(height: 140.0),
-            Container(
-                child: Image(image: AssetImage('assets/mercury_logo.png'))),
+            Container(child: Image(image: AssetImage(Images.logo))),
             Expanded(
                 child: ListView(
               children: [
@@ -66,6 +56,19 @@ class _DummyState extends State<Dummy> {
                             ),
                           ),
                           SizedBox(height: 10.0),
+                          CustomTextFormField(
+                              hintText: 'Enter Email',
+                              validation: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Email cannot be blank';
+                                } else if (!value.contains('@') ||
+                                    (value.length < 4)) {
+                                  return 'Not a valid Email';
+                                }
+                                return null;
+                              },
+                              controller: emailController),
+                          SizedBox(height: 50.0),
                           TextFormField(
                             autovalidate: true,
                             decoration: InputDecoration(
@@ -133,9 +136,10 @@ class _DummyState extends State<Dummy> {
                                 "Password?",
                                 maxLines: 1,
                                 style: TextStyle(
-                                    color: Color(0xff2FC3C5),
-                                    fontWeight: FontWeight.bold),
-                              )
+                                  color: Color(0xff2FC3C5),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ],
                           ),
                           SizedBox(height: 35.0),
@@ -154,23 +158,33 @@ class _DummyState extends State<Dummy> {
                             ),
                             color: Color(0xff2FC3C5),
                             shape: const StadiumBorder(),
-                            onPressed: () {
-                              if (validateAndSave()) {
-                                print(loginRequestModel.toJson());
-
-                                ApiService api = new ApiService();
-                                api.loginUser(loginRequestModel).then((value) {
-                                  if (value.answerToken.isNotEmpty) {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return OtpPage();
-                                    }));
-                                  } else {
-                                    setState(() {
-                                      message = 'Error';
-                                    });
-                                  }
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                var email = emailController.text;
+                                var password = passwordController.text;
+                                setState(() {
+                                  message = 'Please wait...';
                                 });
+                                var res = await loginUser(email, password);
+                                var jsonResponse = null;
+                                if (res.containsKey('status')) {
+                                  setState(() {
+                                    message = 'Loading....';
+                                    String jsonObj = jsonEncode(res);
+                                    print(jsonObj);
+                                  });
+                                  if (res['status'] == 200) {
+                                    jsonResponse = json.decode(res);
+                                    if (jsonResponse != null) {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return OtpPage();
+                                      }));
+                                    }
+                                  } else {
+                                    message = 'Error....';
+                                  }
+                                }
                               }
                             },
                           ),
@@ -220,5 +234,16 @@ class _DummyState extends State<Dummy> {
       return true;
     }
     return false;
+  }
+
+  emailValidation(value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    } else if (value.length < 6) {
+      return 'Password should be atleast 6 characters ';
+    } else if (value.length > 20) {
+      return "Password should not be greater than 20 characters";
+    }
+    return null;
   }
 }

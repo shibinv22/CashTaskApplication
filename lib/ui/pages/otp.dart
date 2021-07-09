@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled1/custom_widgets.dart';
+import 'package:untitled1/ui/widgets/custom_button.dart';
+import 'package:untitled1/utils/constants.dart';
 
 class OtpPage extends StatelessWidget {
   const OtpPage({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class OtpPage extends StatelessWidget {
                     style: TextStyle(fontSize: 8.0),
                   ),
                 ),
-                color: Color(0xff2FC3C5),
+                color: AppColors.appColor,
                 shape: const StadiumBorder(),
               ),
               SizedBox(height: 10.0),
@@ -83,7 +84,7 @@ class OtpPage extends StatelessWidget {
                       maxLines: 1,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff2FC3C5),
+                        color: AppColors.appColor,
                       ),
                     ),
                     SizedBox(width: 2.0),
@@ -103,7 +104,7 @@ class OtpPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(50.0),
-                child: CustomButton(btnText: 'Verify', onBtnPressed: () {}),
+                child: CustomButton(text: 'Verify', onBtnPressed: () {}),
               )
             ],
           ),

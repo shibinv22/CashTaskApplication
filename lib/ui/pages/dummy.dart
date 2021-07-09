@@ -8,15 +8,15 @@
 //
 // import 'network/api.dart';
 //
-// class LoginPage extends StatefulWidget {
-//   const LoginPage({Key? key}) : super(key: key);
+// class Dummy extends StatefulWidget {
+//   const Dummy({Key? key}) : super(key: key);
 //   @override
-//   _LoginPageState createState() => _LoginPageState();
+//   _DummyState createState() => _DummyState();
 // }
 //
-// class _LoginPageState extends State<LoginPage> {
+// class _DummyState extends State<Dummy> {
 //   final _formKey = GlobalKey<FormState>();
-//   LoginRequestModel loginRequestModel;
+//   late LoginRequestModel loginRequestModel;
 //   final emailController = TextEditingController();
 //   final passwordController = TextEditingController();
 //   String message = '';
@@ -25,7 +25,7 @@
 //   void initState() {
 //     // TODO: implement initState
 //     super.initState();
-//     loginRequestModel = new LoginRequestModel(email: email, password: password);
+//     loginRequestModel = new LoginRequestModel(email: '', password: '');
 //   }
 //
 //   @override
@@ -154,33 +154,23 @@
 //                             ),
 //                             color: Color(0xff2FC3C5),
 //                             shape: const StadiumBorder(),
-//                             onPressed: () async {
-//                               if (_formKey.currentState!.validate()) {
-//                                 var email = emailController.text;
-//                                 var password = passwordController.text;
-//                                 setState(() {
-//                                   message = 'Please wait...';
-//                                 });
-//                                 var res = await loginUser(email, password);
-//                                 var jsonResponse = null;
-//                                 if (res.containsKey('status')) {
-//                                   setState(() {
-//                                     message = 'Loading....';
-//                                     String jsonObj = jsonEncode(res);
-//                                     print(jsonObj);
-//                                   });
-//                                   if (res['status'] == 200) {
-//                                     jsonResponse = json.decode(res);
-//                                     if (jsonResponse != null) {
-//                                       Navigator.push(context,
-//                                           MaterialPageRoute(builder: (context) {
-//                                         return OtpPage();
-//                                       }));
-//                                     }
+//                             onPressed: () {
+//                               if (validateAndSave()) {
+//                                 print(loginRequestModel.toJson());
+//
+//                                 ApiService api = new ApiService();
+//                                 api.loginUser(loginRequestModel).then((value) {
+//                                   if (value.answerToken.isNotEmpty) {
+//                                     Navigator.push(context,
+//                                         MaterialPageRoute(builder: (context) {
+//                                       return OtpPage();
+//                                     }));
 //                                   } else {
-//                                     message = 'Error....';
+//                                     setState(() {
+//                                       message = 'Error';
+//                                     });
 //                                   }
-//                                 }
+//                                 });
 //                               }
 //                             },
 //                           ),
