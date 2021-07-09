@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:untitled1/ui/widgets/customButton.dart';
+import 'package:untitled1/ui/widgets/otpBox.dart';
+import 'package:untitled1/ui/widgets/repeatingTexts/dummyNumber.dart';
+import 'package:untitled1/ui/widgets/repeatingTexts/otpdigit.dart';
+import 'package:untitled1/ui/widgets/repeatingTexts/resendTextFields.dart';
+import 'package:untitled1/ui/widgets/textHeading.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class IncorrectOtpPage extends StatelessWidget {
@@ -17,96 +21,35 @@ class IncorrectOtpPage extends StatelessWidget {
               SizedBox(height: 110.0),
               Container(child: Image(image: AssetImage(ImageData.otpFailure))),
               SizedBox(height: 5.0),
-              MaterialButton(
-                height: 10.0,
-                onPressed: () {},
-                child: Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Text(
-                    '+91 ***** *4578',
-                    style: TextStyle(fontSize: 8.0),
-                  ),
-                ),
-                color: Colors.pinkAccent,
-                shape: const StadiumBorder(),
-              ),
+              DummyNumber(color: Colors.pink),
               SizedBox(height: 10.0),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Incorrect Code,',
-                      maxLines: 1,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20.0)),
-                  SizedBox(height: 2.0),
-                  Text('Please try Again',
-                      maxLines: 1,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20.0)),
-                  SizedBox(height: 30.0),
-                  Text('Enter the 6 digit code sent to your',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  SizedBox(
-                    height: 2.0,
+                  TitleTextField(
+                    text: 'Incorrect Code,',
+                    fontSize: 20.0,
                   ),
-                  Text('mobile number',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  SizedBox(height: 2.0),
+                  TitleTextField(
+                    text: "Please try Again",
+                    fontSize: 20.0,
+                  ),
+                  SizedBox(height: 30.0),
+                  ResendOTP(),
                 ],
               ),
-              //OTP BOXES
-              Padding(
-                padding: const EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 10.0),
-                child: TextFormField(
-                  maxLength: 6,
-                  showCursor: false,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              new BorderSide(color: Colors.pink, width: 2.0)),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.pink, width: 2.0)),
-                      fillColor: Colors.grey[200],
-                      filled: true),
+              OtpBox(
+                inputDecoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          new BorderSide(color: Colors.pink, width: 2.0)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.pink, width: 2.0)),
+                  fillColor: Colors.grey[200],
                 ),
               ),
-
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Didn't get your code?,",
-                      maxLines: 1,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 2.0),
-                    Text(
-                      "Click here",
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.appColor,
-                      ),
-                    ),
-                    SizedBox(width: 2.0),
-                    Text(
-                      "to send a",
-                      maxLines: 1,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 2.0),
-              Text(
-                "new one",
-                maxLines: 1,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              ResendToNumberText(),
               Padding(
                 padding: const EdgeInsets.all(50.0),
                 child: CustomButton(text: 'Try Again', onBtnPressed: () {}),

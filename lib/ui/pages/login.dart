@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
@@ -20,15 +19,6 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   String message = '';
 
-  String? Function(String?) emailValidation = (chuma) {
-    if (chuma == null || chuma.isEmpty) {
-      return 'Email cannot be blank';
-    } else if (!chuma.contains('@') || (chuma.length < 4)) {
-      return 'Not a valid Email';
-    }
-    return null;
-  };
-
   @override
   void dispose() {
     emailController.dispose();
@@ -43,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             SizedBox(height: 140.0),
-            Container(child: Image(image: AssetImage(ImageData.logo))),
+            Image(image: AssetImage(ImageData.logo)),
             Expanded(
                 child: ListView(
               children: [
@@ -53,91 +43,33 @@ class _LoginPageState extends State<LoginPage> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          TitleTextField(
-                            text: 'Email',
-                          ),
+                          Align(
+                              alignment: Alignment.topLeft,
+                              child: TitleTextField(text: 'Email')),
                           SizedBox(height: 10.0),
                           CustomTextFormField(
-                              hintText: 'Enter your Email',
-                              validation: StringFunctions.emailValidation,
-                              controller: emailController),
-                          // TextFormField(
-                          //   autovalidate: true,
-                          //   decoration: InputDecoration(
-                          //     border: InputBorder.none,
-                          //     fillColor: Colors.grey[200],
-                          //     filled: true,
-                          //     hintText: 'Enter your Email',
-                          //   ),
-                          //   controller: emailController,
-                          //   validator: (value) {
-                          //     if (value == null || value.isEmpty) {
-                          //       return 'Email cannot be blank';
-                          //     } else if (!value.contains('@') ||
-                          //         (value.length < 4)) {
-                          //       return 'Not a valid Email';
-                          //     }
-                          //     return null;
-                          //   },
-                          // ),
-                          SizedBox(
-                            height: 20.0,
+                            hintText: 'Enter your Email',
+                            validation: StringFunctions.emailValidation,
+                            controller: emailController,
                           ),
-                          TitleTextField(
-                            text: 'Password',
-                          ),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(right: 280.0),
-                          //   child: Container(
-                          //     child: Text(
-                          //       'Password',
-                          //       style: TextStyle(
-                          //         fontWeight: FontWeight.bold,
-                          //       ),
-                          //       maxLines: 1,
-                          //     ),
-                          //   ),
-                          // ),
+                          SizedBox(height: 20.0),
+                          Align(
+                              alignment: Alignment.topLeft,
+                              child: TitleTextField(text: 'Password')),
                           SizedBox(height: 10.0),
                           CustomTextFormField(
-                              hintText: 'Enter your password',
-                              validation: StringFunctions.passwordValidation,
-                              controller: passwordController),
-                          // TextFormField(
-                          //   autovalidate: true,
-                          //   decoration: InputDecoration(
-                          //       border: InputBorder.none,
-                          //       fillColor: Colors.grey[200],
-                          //       filled: true,
-                          //       hintText: 'Enter password'),
-                          //   controller: passwordController,
-                          //   validator: (value) {
-                          //     if (value == null || value.isEmpty) {
-                          //       return 'Password is required';
-                          //     } else if (value.length < 6) {
-                          //       return 'Password should be atleast 6 characters ';
-                          //     } else if (value.length > 20) {
-                          //       return "Password should not be greater than 20 characters";
-                          //     }
-                          //     return null;
-                          //   },
-                          // ),
+                            hintText: 'Enter your password',
+                            validation: StringFunctions.passwordValidation,
+                            controller: passwordController,
+                          ),
                           SizedBox(height: 15.0),
                           Row(
                             children: [
-                              Text(
-                                'Forgot',
-                                maxLines: 1,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(width: 3.0),
-                              Text(
-                                "Password?",
-                                maxLines: 1,
-                                style: TextStyle(
-                                  color: AppColors.appColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              TitleTextField(text: 'Forgot'),
+                              SizedBox(width: 2.0),
+                              TitleTextField(
+                                text: 'Password?',
+                                textColor: AppColors.appColor,
                               ),
                             ],
                           ),
@@ -187,32 +119,19 @@ class _LoginPageState extends State<LoginPage> {
                               }
                             },
                           ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
+                          SizedBox(height: 10.0),
                           Text(message),
                           SizedBox(height: 20.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "Don't have an account?",
-                                maxLines: 1,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15.0),
+                              TitleTextField(text: "Don't have an account?"),
+                              SizedBox(width: 5.0),
+                              TitleTextField(
+                                text: 'Sign Up',
+                                textColor: AppColors.appColor,
+                                fontSize: 15.0,
                               ),
-                              SizedBox(
-                                width: 5.0,
-                              ),
-                              Text(
-                                'Sign Up',
-                                maxLines: 1,
-                                style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: AppColors.appColor,
-                                    fontWeight: FontWeight.bold),
-                              )
                             ],
                           )
                         ],
