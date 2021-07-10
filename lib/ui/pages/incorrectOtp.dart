@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled1/ui/widgets/customButton.dart';
-import 'package:untitled1/ui/widgets/otpBox.dart';
-import 'package:untitled1/ui/widgets/repeatingTexts/dummyNumber.dart';
-import 'package:untitled1/ui/widgets/repeatingTexts/otpdigit.dart';
-import 'package:untitled1/ui/widgets/repeatingTexts/resendTextFields.dart';
-import 'package:untitled1/ui/widgets/textHeading.dart';
+import 'package:untitled1/ui/widgets/customWidgets.dart';
+import 'package:untitled1/ui/widgets/customRepeatingTexts.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class IncorrectOtpPage extends StatelessWidget {
