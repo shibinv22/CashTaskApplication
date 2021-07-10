@@ -1,6 +1,4 @@
-//--no-sound-null-safety
 import 'package:flutter/material.dart';
-import 'package:untitled1/ui/pages/incorrectOtp.dart';
 import 'package:untitled1/ui/pages/login.dart';
 
 void main() {
