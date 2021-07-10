@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
@@ -65,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                           Row(
                             children: [
                               TitleTextField(text: 'Forgot'),
-                              SizedBox(width: 2.0),
+                              SizedBox(width: 3.0),
                               TitleTextField(
                                 text: 'Password?',
                                 textColor: AppColors.appColor,
@@ -73,50 +72,10 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                           SizedBox(height: 35.0),
-                          MaterialButton(
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Login',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            color: AppColors.appColor,
-                            shape: const StadiumBorder(),
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                var email = emailController.text;
-                                var password = passwordController.text;
-                                setState(() {
-                                  message = 'Please wait...';
-                                });
-                                var res = await loginUser(email, password);
-                                var jsonResponse = null;
-                                if (res.containsKey('status')) {
-                                  setState(() {
-                                    message = 'Loading....';
-                                    String jsonObj = jsonEncode(res);
-                                    print(jsonObj);
-                                  });
-                                  if (res['status'] == 200) {
-                                    jsonResponse = json.decode(res);
-                                    if (jsonResponse != null) {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return OtpPage();
-                                      }));
-                                    }
-                                  } else {
-                                    message = 'Error....';
-                                  }
-                                }
-                              }
-                            },
+                          CustomButton(
+                            text: 'Login',
+                            padding: 15.0,
+                            onBtnPressed: loginMethod,
                           ),
                           SizedBox(height: 10.0),
                           Text(message),
@@ -142,5 +101,27 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  loginMethod() async {
+    if (_formKey.currentState!.validate()) {
+      var email = emailController.text;
+      var password = passwordController.text;
+      setState(() async {
+        message = 'Please wait...';
+        ApiService api = ApiService();
+        var res = await api.loginUser(email, password, "2", 2);
+        print(res);
+        if (res.containsKey('answer_token')) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return OtpPage();
+          }));
+        } else {
+          setState(() {
+            message = 'Invalid Credentials..Login Failed';
+          });
+        }
+      });
+    }
   }
 }

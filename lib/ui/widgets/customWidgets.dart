@@ -20,7 +20,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      autovalidate: true,
+      autovalidateMode: AutovalidateMode.always,
       decoration: InputDecoration(
         border: InputBorder.none,
         fillColor: Colors.grey[200],

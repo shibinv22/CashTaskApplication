@@ -79,6 +79,7 @@ class OtpBox extends StatelessWidget {
           maxLength: 6,
           showCursor: false,
           keyboardType: TextInputType.number,
+          // ignore: deprecated_member_use
           inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
           textAlign: TextAlign.center,
           decoration: inputDecoration,

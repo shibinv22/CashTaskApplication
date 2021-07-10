@@ -1,32 +1,16 @@
-// To parse this JSON data, do
-//
-//     final loginModel = loginModelFromJson(jsonString);
+class LoginModel {
+  final String email;
+  final String password;
 
-import 'dart:convert';
+  LoginModel({
+    required this.password,
+    required this.email,
+  });
 
-class LoginResponseModel {
-  final String answerToken;
-
-  LoginResponseModel({required this.answerToken});
-
-  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    return LoginResponseModel(
-      answerToken: json["answer_token"] != null ? json["answer_token"] : '',
+  factory LoginModel.fromJson(Map<String, dynamic> json) {
+    return LoginModel(
+      email: json['email'],
+      password: json['password'],
     );
-  }
-}
-
-class LoginRequestModel {
-  String email;
-  String password;
-
-  LoginRequestModel({required this.email, required this.password});
-
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {
-      'email': email.trim(),
-      'password': password.trim(),
-    };
-    return map;
   }
 }

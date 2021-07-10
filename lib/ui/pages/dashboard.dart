@@ -163,10 +163,10 @@ class _DashBoardState extends State<DashBoard> {
 }
 
 class TileInfo {
-  final String HoldingName;
-  final String Amount;
+  final String holdingName;
+  final String amount;
   final Color startColor;
   final Color endColor;
 
-  TileInfo(this.HoldingName, this.Amount, this.startColor, this.endColor);
+  TileInfo(this.holdingName, this.amount, this.startColor, this.endColor);
 }
