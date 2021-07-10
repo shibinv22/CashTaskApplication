@@ -16,17 +16,17 @@ class ApiService {
         'os': os,
       }),
     );
-    // if (response.statusCode == 200) {
-    //   print('success');
-    //   var convertedToJson = jsonDecode(response.body);
-    //   print(convertedToJson);
-    // } else {
-    //   print('code error..');
-    //   var convertedToJson = jsonDecode(response.body);
-    //   print(convertedToJson);
-    // }
-    // var convertedToJsonReturn = jsonDecode(response.body);
-    // return convertedToJsonReturn;
+    if (response.statusCode == 200) {
+      print('success');
+      var convertedToJson = jsonDecode(response.body);
+      print(convertedToJson);
+    } else {
+      print('code error..');
+      var convertedToJson = jsonDecode(response.body);
+      print(convertedToJson);
+    }
+    var convertedToJsonReturn = jsonDecode(response.body);
+    return convertedToJsonReturn;
   }
 }
 
