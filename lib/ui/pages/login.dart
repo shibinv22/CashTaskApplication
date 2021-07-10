@@ -3,8 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
 import 'package:untitled1/ui/pages/otp.dart';
-import 'package:untitled1/ui/widgets/textHeading.dart';
-import 'package:untitled1/ui/widgets/text_form_field.dart';
+import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class LoginPage extends StatefulWidget {
