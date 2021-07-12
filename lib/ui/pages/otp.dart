@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/model/otpResponse.dart';
 import 'package:untitled1/network/api.dart';
-import 'package:untitled1/ui/pages/dashboard.dart';
+import 'package:untitled1/ui/pages/homeScreen.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/ui/widgets/customRepeatingTexts.dart';
 import 'package:untitled1/utils/constants.dart';
@@ -77,7 +77,7 @@ class _OtpPageState extends State<OtpPage> {
       var res = await api.userOTP('otp', token);
       print(res);
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return DashBoard();
+        return HomeScreen();
       }));
     });
   }

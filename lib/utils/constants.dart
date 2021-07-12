@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppUrl {
   static const String loginBaseUrl = 'https://auth.mercurydev.tk/login';
-  static const String dashboardURL = 'https://auth.mercurydev.tk/login';
+  static const String dashboardURL = '';
 }
 
 class Texts {

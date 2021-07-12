@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
-import 'package:untitled1/ui/pages/dashboard.dart';
+import 'package:untitled1/ui/pages/homeScreen.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/ui/widgets/customRepeatingTexts.dart';
 import 'package:untitled1/utils/constants.dart';
@@ -86,7 +86,7 @@ class _IncorrectOtpPageState extends State<IncorrectOtpPage> {
       var res = await api.userOTP('otp', token);
       print(res);
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return DashBoard();
+        return HomeScreen();
       }));
     });
   }

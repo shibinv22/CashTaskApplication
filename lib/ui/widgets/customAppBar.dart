@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/utils/constants.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
 
@@ -12,10 +12,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }) : preferredSize = Size.fromHeight(toolbarHeight);
 
   @override
+  _CustomAppBarState createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabcontroller;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabcontroller = TabController(length: 11, vsync: this);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: toolbarHeight,
+        toolbarHeight: widget.toolbarHeight,
         title: Container(
           color: Colors.white,
           child: Row(
@@ -25,6 +39,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 'mercury.',
                 style: TextStyle(
                     color: Colors.black,
+                    fontSize: 25.0,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.0),
               ),
@@ -32,6 +47,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 'cash',
                 style: TextStyle(
                     color: AppColors.appColor,
+                    fontSize: 25.0,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.0),
               ),
@@ -54,6 +70,52 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
         centerTitle: true,
         backgroundColor: Colors.white,
+        bottom: TabBar(
+          controller: _tabcontroller,
+          isScrollable: true,
+          labelColor: AppColors.appColor,
+          unselectedLabelColor: Colors.grey,
+          indicatorColor: AppColors.appColor,
+          labelStyle: TextStyle(
+              fontSize: 15.0,
+              fontWeight: FontWeight.bold,
+              color: AppColors.appColor),
+          tabs: <Widget>[
+            Tab(
+              text: "Dashboard",
+            ),
+            Tab(
+              text: "Send",
+            ),
+            Tab(
+              text: "Batch Send",
+            ),
+            Tab(
+              text: "Deposit",
+            ),
+            Tab(
+              text: "Buy/Sell",
+            ),
+            Tab(
+              text: "Wallets",
+            ),
+            Tab(
+              text: "Contacts",
+            ),
+            Tab(
+              text: "Statements",
+            ),
+            Tab(
+              text: "Transactions",
+            ),
+            Tab(
+              text: "Settings",
+            ),
+            Tab(
+              text: "Referral",
+            ),
+          ],
+        ),
       ),
     );
   }
