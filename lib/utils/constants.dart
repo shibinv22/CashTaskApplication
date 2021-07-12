@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AppUrl {
   static const String loginBaseUrl = 'https://auth.mercurydev.tk/login';
+  static const String dashboardURL = 'https://auth.mercurydev.tk/login';
 }
 
 class Texts {
@@ -40,6 +41,16 @@ class StringFunctions {
       return 'Password should be atleast 6 characters ';
     } else if (value.length > 20) {
       return "Password should not be greater than 20 characters";
+    }
+    return null;
+  };
+
+  //Otp Validation
+  static String? Function(String?) otpValidation = (value) {
+    if (value == null || value.isEmpty) {
+      return 'OTP is required';
+    } else if (value.length < 6) {
+      return 'OTP is a 6 digit number ';
     }
     return null;
   };
