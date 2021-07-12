@@ -12,11 +12,11 @@ String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
 class LoginResponse {
   LoginResponse({
     this.answerToken,
-    this.providers,
+    required this.providers,
   });
 
   String? answerToken;
-  List<String>? providers;
+  List<String> providers;
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
         answerToken: json["answer_token"],
@@ -25,6 +25,6 @@ class LoginResponse {
 
   Map<String, dynamic> toJson() => {
         "answer_token": answerToken,
-        "providers": List<dynamic>.from(providers!.map((x) => x)),
+        "providers": List<dynamic>.from(providers.map((x) => x)),
       };
 }

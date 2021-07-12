@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:untitled1/ui/pages/dummy.dart';
 import 'package:untitled1/ui/widgets/customAppBar.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/ui/widgets/transactionCategories.dart';
@@ -26,7 +27,9 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(
+        toolbarHeight: 60.0,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -37,60 +40,61 @@ class _DashBoardState extends State<DashBoard> {
                       top: 30.0, bottom: 50.0, left: 20.0),
                   child: Stack(
                     children: [
-                      Container(
-                        height: 150.0,
-                        width: 300.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          gradient: LinearGradient(
-                              colors: [Colors.pinkAccent, Colors.purple],
-                              begin: Alignment.topLeft,
-                              end: Alignment.topRight),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black,
-                                blurRadius: 5.0,
-                                offset: Offset(0, 5))
-                          ],
-                        ),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, left: 10.0),
-                            child: Row(
-                              children: [
-                                Image(
-                                  image: AssetImage('assets/mercury_logo.png'),
-                                  height: 30.0,
-                                  width: 30.0,
-                                ),
-                                SizedBox(width: 5.0),
-                                Text(
-                                  'Total Holdings (USD)',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12.0),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 25.0, left: 15.0),
-                            child: Text(
-                              'A 265,498,446,545.00',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      Dummy(),
+                      // Container(
+                      //   height: 150.0,
+                      //   width: 300.0,
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(25),
+                      //     gradient: LinearGradient(
+                      //         colors: [Colors.pinkAccent, Colors.purple],
+                      //         begin: Alignment.topLeft,
+                      //         end: Alignment.topRight),
+                      //     boxShadow: [
+                      //       BoxShadow(
+                      //           color: Colors.black,
+                      //           blurRadius: 5.0,
+                      //           offset: Offset(0, 5))
+                      //     ],
+                      //   ),
+                      // ),
+                      // Column(
+                      //   mainAxisSize: MainAxisSize.min,
+                      //   crossAxisAlignment: CrossAxisAlignment.start,
+                      //   children: [
+                      //     Padding(
+                      //       padding:
+                      //           const EdgeInsets.only(top: 10.0, left: 10.0),
+                      //       child: Row(
+                      //         children: [
+                      //           Image(
+                      //             image: AssetImage(ImageData.logo),
+                      //             height: 30.0,
+                      //             width: 30.0,
+                      //           ),
+                      //           SizedBox(width: 5.0),
+                      //           Text(
+                      //             'Total Holdings (USD)',
+                      //             style: TextStyle(
+                      //                 color: Colors.white, fontSize: 12.0),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //     Padding(
+                      //       padding:
+                      //           const EdgeInsets.only(top: 25.0, left: 15.0),
+                      //       child: Text(
+                      //         'A 265,498,446,545.00',
+                      //         style: TextStyle(
+                      //           color: Colors.white,
+                      //           fontWeight: FontWeight.bold,
+                      //           fontSize: 20.0,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),

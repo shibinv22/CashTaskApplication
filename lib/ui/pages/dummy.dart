@@ -14,7 +14,7 @@ class Dummy extends StatelessWidget {
           children: [
             Container(
               width: 300.0,
-              height: 400.0,
+              height: 200.0,
               margin: EdgeInsets.only(right: 20.0),
               decoration: BoxDecoration(
                 gradient: LinearGradient(

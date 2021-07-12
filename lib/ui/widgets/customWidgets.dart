@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:untitled1/utils/constants.dart';
 
 //InputFormField
@@ -96,6 +97,37 @@ class TitleTextField extends StatelessWidget {
             maxLines: 1,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class OtpBox extends StatelessWidget {
+  final InputDecoration inputDecoration;
+  final TextEditingController controller;
+  final String? Function(String?) validation;
+
+  OtpBox(
+      {required this.inputDecoration,
+      required this.controller,
+      required this.validation});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 10.0),
+        child: TextFormField(
+          controller: controller,
+          autovalidateMode: AutovalidateMode.always,
+          validator: validation,
+          showCursor: false,
+          maxLength: 6,
+          keyboardType: TextInputType.number,
+          // ignore: deprecated_member_use
+          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+          textAlign: TextAlign.center,
+          decoration: inputDecoration,
+        ),
       ),
     );
   }

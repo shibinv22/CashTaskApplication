@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/utils/constants.dart';
 
@@ -60,29 +59,6 @@ class ResendToNumberText extends StatelessWidget {
           SizedBox(height: 2.0),
           TitleTextField(text: 'new one'),
         ],
-      ),
-    );
-  }
-}
-
-class OtpBox extends StatelessWidget {
-  final InputDecoration inputDecoration;
-
-  OtpBox({required this.inputDecoration});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 10.0),
-        child: TextFormField(
-          maxLength: 6,
-          showCursor: false,
-          keyboardType: TextInputType.number,
-          // ignore: deprecated_member_use
-          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-          textAlign: TextAlign.center,
-          decoration: inputDecoration,
-        ),
       ),
     );
   }

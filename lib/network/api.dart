@@ -2,6 +2,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled1/model/loginresponse.dart';
+import 'package:untitled1/model/otpResponse.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class ApiService {
@@ -23,15 +25,61 @@ class ApiService {
     if (response.statusCode == 200) {
       print('success');
       var convertedToJson = jsonDecode(response.body);
-      print(convertedToJson);
       sharedPreferences.setString(
           'answer_token', convertedToJson['answer_token']);
+      return LoginResponse.fromJson(convertedToJson);
+      // return convertedToJson;
     } else {
       print('code error..');
-      var convertedToJson = jsonDecode(response.body);
-      print(convertedToJson);
     }
-    var convertedToJsonReturn = jsonDecode(response.body);
-    return convertedToJsonReturn;
   }
+
+  Future userOTP(String provider, String token) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    late String? bearerToken = sharedPreferences.getString("answer_token");
+    print(bearerToken);
+
+    var otpResponse = await http.put(
+      Uri.parse(AppUrl.loginBaseUrl),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $bearerToken',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'provider': provider,
+        'token': token,
+      }),
+    );
+    if (otpResponse.statusCode == 200) {
+      print('success');
+      var convertedToJson = jsonDecode(otpResponse.body);
+      sharedPreferences.setString(
+          'access_token', convertedToJson['access_token']);
+      return OtpResponse.fromJson(convertedToJson);
+    } else {
+      print('code error..');
+      var convertedToJson = jsonDecode(otpResponse.body);
+
+      return OtpResponse.fromJson(convertedToJson);
+    }
+  }
+
+  // Future userDashboard() async {
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   late String? bearerToken = sharedPreferences.getString("access_token");
+  //   print(bearerToken);
+  //   final response = await http.get(
+  //     Uri.parse(AppUrl.dashboardURL),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //       'Authorization': 'Bearer $bearerToken',
+  //     },
+  //   );
+
+  //   if (response.statusCode == 200) {
+  //     return DashBoardResponse.fromJson(jsonDecode(response.body));
+  //   } else {
+  //     throw Exception('Failed to load album');
+  //   }
+  // }
 }
