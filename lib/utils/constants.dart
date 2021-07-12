@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
+class AppUrl {
+  static const String loginBaseUrl = 'https://auth.mercurydev.tk/login';
+}
+
 class Texts {
   static const String login = 'Hello';
 }

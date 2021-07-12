@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.only(top: 50.0),
+                  margin: EdgeInsets.only(top: 80.0),
                   child: Image(
                     image: AssetImage(ImageData.logo),
                   )),

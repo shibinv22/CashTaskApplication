@@ -5,7 +5,6 @@ import 'package:untitled1/utils/constants.dart';
 
 class DummyNumber extends StatelessWidget {
   final Color color;
-
   DummyNumber({required this.color});
   @override
   Widget build(BuildContext context) {

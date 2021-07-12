@@ -2,13 +2,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled1/utils/constants.dart';
 
 class ApiService {
   Future loginUser(
       String email, String password, String version, int os) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var response = await http.post(
-      Uri.parse('https://fenix-auth.mercurydev.tk/login'),
+      Uri.parse(AppUrl.loginBaseUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
