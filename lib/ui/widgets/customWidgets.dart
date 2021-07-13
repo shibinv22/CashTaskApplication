@@ -103,12 +103,12 @@ class TitleTextField extends StatelessWidget {
 }
 
 class OtpBox extends StatelessWidget {
-  final InputDecoration inputDecoration;
+  final bool incorrectOtp;
   final TextEditingController controller;
   final String? Function(String?) validation;
 
   OtpBox(
-      {required this.inputDecoration,
+      {required this.incorrectOtp,
       required this.controller,
       required this.validation});
   @override
@@ -126,7 +126,24 @@ class OtpBox extends StatelessWidget {
           // ignore: deprecated_member_use
           inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
           textAlign: TextAlign.center,
-          decoration: inputDecoration,
+          decoration: incorrectOtp
+              ? InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          new BorderSide(color: Colors.pink, width: 2.0)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.pink, width: 2.0)),
+                  focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.pink, width: 2.0)),
+                  errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.pink, width: 2.0)),
+                  fillColor: Colors.grey[200],
+                )
+              : InputDecoration(
+                  border: InputBorder.none,
+                  fillColor: Colors.grey[200],
+                  filled: true,
+                ),
         ),
       ),
     );

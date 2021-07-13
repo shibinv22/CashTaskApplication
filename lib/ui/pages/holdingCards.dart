@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/utils/constants.dart';
 
-class Dummy extends StatelessWidget {
-  const Dummy({Key? key}) : super(key: key);
+class HoldingCards extends StatelessWidget {
+  const HoldingCards({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class Dummy extends StatelessWidget {
                           child: Row(
                             children: [
                               Image(
-                                image: AssetImage(ImageData.logo),
+                                image: AssetImage(Images.logo),
                                 height: 30.0,
                                 width: 30.0,
                               ),
@@ -108,7 +108,7 @@ class Dummy extends StatelessWidget {
                           child: Row(
                             children: [
                               Image(
-                                image: AssetImage(ImageData.logo),
+                                image: AssetImage(Images.logo),
                                 height: 30.0,
                                 width: 30.0,
                               ),
@@ -172,7 +172,7 @@ class Dummy extends StatelessWidget {
                           child: Row(
                             children: [
                               Image(
-                                image: AssetImage(ImageData.logo),
+                                image: AssetImage(Images.logo),
                                 height: 30.0,
                                 width: 30.0,
                               ),

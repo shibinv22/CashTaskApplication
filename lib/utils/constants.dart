@@ -9,7 +9,7 @@ class Texts {
   static const String login = 'Hello';
 }
 
-class ImageData {
+class Images {
   static const String imagePath = "assets/images/";
   static const String pathExtension = '.png';
 

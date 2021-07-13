@@ -2,12 +2,12 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled1/model/loginresponse.dart';
+import 'package:untitled1/model/loginResponse.dart';
 import 'package:untitled1/model/otpResponse.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class ApiService {
-  Future loginUser(
+  Future<LoginResponse> loginUser(
       String email, String password, String version, int os) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var response = await http.post(
@@ -30,11 +30,13 @@ class ApiService {
       return LoginResponse.fromJson(convertedToJson);
       // return convertedToJson;
     } else {
+      var convertedToJson = jsonDecode(response.body);
       print('code error..');
+      return LoginResponse.fromJson(convertedToJson);
     }
   }
 
-  Future userOTP(String provider, String token) async {
+  Future<OtpResponse> userOTP(String provider, String token) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     late String? bearerToken = sharedPreferences.getString("answer_token");
     print(bearerToken);

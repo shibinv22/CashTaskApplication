@@ -10,23 +10,33 @@ OtpResponse otpResponseFromJson(String str) =>
 String otpResponseToJson(OtpResponse data) => json.encode(data.toJson());
 
 class OtpResponse {
-  OtpResponse({this.accessToken, this.refreshToken, this.message, this.status});
+  OtpResponse({
+    this.accessToken,
+    this.refreshToken,
+    this.message,
+    this.status,
+    this.code,
+  });
 
   String? accessToken;
   String? refreshToken;
   String? message;
   int? status;
+  String? code;
 
   factory OtpResponse.fromJson(Map<String, dynamic> json) => OtpResponse(
-      accessToken: json["access_token"],
-      refreshToken: json["refresh_token"],
-      message: json['message'],
-      status: json['status']);
+        accessToken: json["access_token"],
+        refreshToken: json["refresh_token"],
+        message: json['message'],
+        status: json['status'],
+        code: json['code'],
+      );
 
   Map<String, dynamic> toJson() => {
         "access_token": accessToken,
         "refresh_token": refreshToken,
         "message": message,
         "status": status,
+        "code": code,
       };
 }

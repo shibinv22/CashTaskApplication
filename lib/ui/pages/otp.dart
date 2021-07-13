@@ -17,6 +17,8 @@ class _OtpPageState extends State<OtpPage> {
   final ApiService api = ApiService();
   final otpController = TextEditingController();
   String message = '';
+
+  bool incorrectOtp = false;
   final OtpResponse otpResponse = OtpResponse();
 
   @override
@@ -27,20 +29,25 @@ class _OtpPageState extends State<OtpPage> {
           child: Column(
             children: [
               SizedBox(height: 110.0),
-              Container(child: Image(image: AssetImage(ImageData.otpSuccess))),
+              Image.asset(incorrectOtp ? Images.otpFailure : Images.otpSuccess),
               SizedBox(height: 5.0),
-              DummyNumber(color: AppColors.appColor),
+              DummyNumber(
+                color: incorrectOtp ? Colors.pink : AppColors.appColor,
+              ),
               SizedBox(height: 10.0),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TitleTextField(
-                    text: 'We Sent A SMS Code To',
+                    text: incorrectOtp
+                        ? 'Incorrect Code,'
+                        : 'We Sent A SMS Code To',
                     fontSize: 20.0,
                   ),
                   SizedBox(height: 2.0),
                   TitleTextField(
-                    text: "Your Phone Number",
+                    text:
+                        incorrectOtp ? "Please try Again" : "Your Phone Number",
                     fontSize: 20.0,
                   ),
                   SizedBox(height: 30.0),
@@ -48,10 +55,7 @@ class _OtpPageState extends State<OtpPage> {
                 ],
               ),
               OtpBox(
-                inputDecoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.grey[200],
-                    filled: true),
+                incorrectOtp: incorrectOtp,
                 controller: otpController,
                 validation: StringFunctions.otpValidation,
               ),
@@ -59,8 +63,8 @@ class _OtpPageState extends State<OtpPage> {
               Padding(
                 padding: const EdgeInsets.all(50.0),
                 child: CustomButton(
-                  text: 'Verify',
-                  onBtnPressed: otpCheckMethod,
+                  text: incorrectOtp ? 'Try Again' : 'Verify',
+                  onBtnPressed: otpCheck,
                 ),
               )
             ],
@@ -70,15 +74,19 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-  void otpCheckMethod() {
+  void otpCheck() async {
     var token = otpController.text;
-    setState(() async {
-      message = 'Please wait...';
-      var res = await api.userOTP('otp', token);
-      print(res);
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return HomeScreen();
-      }));
+    var res = await api.userOTP('otp', token);
+    print(res);
+    setState(() {
+      incorrectOtp = res.message != null && res.message == 'Authorization Fail';
     });
+
+    if (!incorrectOtp &&
+        res.accessToken != null &&
+        res.accessToken!.isNotEmpty) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
   }
 }

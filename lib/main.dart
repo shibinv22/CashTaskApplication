@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/ui/pages/dashboard.dart';
 import 'package:untitled1/ui/pages/homeScreen.dart';
-import 'package:untitled1/ui/pages/dummy.dart';
-import 'package:untitled1/ui/pages/incorrectOtp.dart';
 import 'package:untitled1/ui/pages/login.dart';
 
 void main() {
