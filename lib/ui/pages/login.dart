@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                       CustomButton(
                         text: 'Login',
                         padding: 15.0,
-                        onBtnPressed: login,
+                        onPressed: login,
                       ),
                       SizedBox(height: 10.0),
                       Text(message),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/model/otpResponse.dart';
 import 'package:untitled1/network/api.dart';
 import 'package:untitled1/ui/pages/homeScreen.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
@@ -17,9 +16,7 @@ class _OtpPageState extends State<OtpPage> {
   final ApiService api = ApiService();
   final otpController = TextEditingController();
   String message = '';
-
   bool incorrectOtp = false;
-  final OtpResponse otpResponse = OtpResponse();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +44,7 @@ class _OtpPageState extends State<OtpPage> {
                   SizedBox(height: 2.0),
                   TitleTextField(
                     text:
-                        incorrectOtp ? "Please try Again" : "Your Phone Number",
+                        incorrectOtp ? 'Please try Again' : 'Your Phone Number',
                     fontSize: 20.0,
                   ),
                   SizedBox(height: 30.0),
@@ -64,7 +61,7 @@ class _OtpPageState extends State<OtpPage> {
                 padding: const EdgeInsets.all(50.0),
                 child: CustomButton(
                   text: incorrectOtp ? 'Try Again' : 'Verify',
-                  onBtnPressed: otpCheck,
+                  onPressed: otpCheck,
                 ),
               )
             ],

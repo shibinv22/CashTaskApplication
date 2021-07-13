@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/network/api.dart';
 import 'package:untitled1/ui/pages/holdingCards.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/ui/widgets/transactionCategories.dart';
@@ -12,6 +13,14 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  final ApiService api = ApiService();
+
+  @override
+  void initState() {
+    super.initState();
+    getRecentTransactions();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -59,13 +68,16 @@ class _DashBoardState extends State<DashBoard> {
             child: CustomButton(
               text: 'Profile',
               padding: 15.0,
-              onBtnPressed: () {
-                print('Profile clicked');
-              },
+              onPressed: getRecentTransactions,
             ),
           ),
         ],
       ),
     );
+  }
+
+  void getRecentTransactions() async {
+    var res = await api.userRecentTransactions();
+    print(res);
   }
 }

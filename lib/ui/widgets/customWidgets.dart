@@ -37,12 +37,12 @@ class CustomTextFormField extends StatelessWidget {
 //CustomButton
 class CustomButton extends StatelessWidget {
   final String? text;
-  final void Function()? onBtnPressed;
+  final void Function()? onPressed;
   final double padding;
 
   const CustomButton({
     this.text,
-    this.onBtnPressed,
+    this.onPressed,
     this.padding = 20.0,
   });
 
@@ -62,7 +62,7 @@ class CustomButton extends StatelessWidget {
         ),
       ),
       color: AppColors.appColor,
-      onPressed: onBtnPressed,
+      onPressed: onPressed,
       shape: const StadiumBorder(),
     );
   }

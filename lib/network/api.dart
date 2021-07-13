@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled1/model/loginResponse.dart';
 import 'package:untitled1/model/otpResponse.dart';
+import 'package:untitled1/model/recentTransactions.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class ApiService {
@@ -66,22 +67,22 @@ class ApiService {
     }
   }
 
-  // Future userDashboard() async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   late String? bearerToken = sharedPreferences.getString("access_token");
-  //   print(bearerToken);
-  //   final response = await http.get(
-  //     Uri.parse(AppUrl.dashboardURL),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //       'Authorization': 'Bearer $bearerToken',
-  //     },
-  //   );
+  Future<RecentTransactions> userRecentTransactions() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    late String? bearerToken = sharedPreferences.getString("access_token");
+    print(bearerToken);
+    final response = await http.get(
+      Uri.parse(AppUrl.recentTransactionsURL),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $bearerToken',
+      },
+    );
 
-  //   if (response.statusCode == 200) {
-  //     return DashBoardResponse.fromJson(jsonDecode(response.body));
-  //   } else {
-  //     throw Exception('Failed to load album');
-  //   }
-  // }
+    if (response.statusCode == 200) {
+      return RecentTransactions.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
 }

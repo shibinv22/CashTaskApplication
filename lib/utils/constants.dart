@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class AppUrl {
   static const String loginBaseUrl = 'https://auth.mercurydev.tk/login';
   static const String dashboardURL = '';
+  static const String recentTransactionsURL =
+      'https://api-cash.mercurydev.tk/api/transaction/recent';
 }
 
 class Texts {
