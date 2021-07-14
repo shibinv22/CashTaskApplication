@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/ui/pages/dashboard.dart';
-import 'package:untitled1/ui/pages/homeScreen.dart';
+import 'package:flutter/rendering.dart';
 import 'package:untitled1/ui/pages/login.dart';
 
 void main() {
+  RenderErrorBox.backgroundColor = Colors.purple;
   runApp(MyApp());
 }
 

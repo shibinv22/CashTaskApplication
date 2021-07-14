@@ -32,74 +32,73 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             Container(
-                margin: EdgeInsets.only(top: 110.0),
-                child: Image(
-                  image: AssetImage(Images.logo),
-                )),
+              margin: EdgeInsets.only(top: 110.0),
+              child: Image.asset(Images.logo),
+            ),
             Form(
-                key: _formKey,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 10.0),
-                  child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: TitleTextField(text: 'Email')),
-                      SizedBox(height: 10.0),
-                      CustomTextFormField(
-                        hintText: 'Enter your Email',
-                        validation: StringFunctions.emailValidation,
-                        controller: emailController,
-                      ),
-                      SizedBox(height: 20.0),
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: TitleTextField(text: 'Password')),
-                      SizedBox(height: 10.0),
-                      CustomTextFormField(
-                        hintText: 'Enter your password',
-                        validation: StringFunctions.passwordValidation,
-                        controller: passwordController,
-                      ),
-                      SizedBox(height: 15.0),
-                      Row(
-                        children: [
-                          TitleTextField(text: 'Forgot'),
-                          SizedBox(width: 3.0),
-                          TitleTextField(
-                            text: 'Password?',
-                            textColor: AppColors.appColor,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 35.0),
-                      CustomButton(
-                        text: 'Login',
-                        padding: 15.0,
-                        onPressed: login,
-                      ),
-                      SizedBox(height: 10.0),
-                      Text(message),
-                      SizedBox(height: 20.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TitleTextField(
-                            text: "Don't have an account?",
-                            fontSize: 15.0,
-                          ),
-                          SizedBox(width: 5.0),
-                          TitleTextField(
-                            text: 'Sign Up',
-                            textColor: AppColors.appColor,
-                            fontSize: 15.0,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                )),
+              key: _formKey,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 10.0),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: TitleTextField(text: 'Email'),
+                    ),
+                    SizedBox(height: 10.0),
+                    CustomTextFormField(
+                      hintText: 'Enter your Email',
+                      validation: StringFunctions.emailValidation,
+                      controller: emailController,
+                    ),
+                    SizedBox(height: 20.0),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: TitleTextField(text: 'Password')),
+                    SizedBox(height: 10.0),
+                    CustomTextFormField(
+                      hintText: 'Enter your password',
+                      validation: StringFunctions.passwordValidation,
+                      controller: passwordController,
+                    ),
+                    SizedBox(height: 15.0),
+                    Row(
+                      children: [
+                        TitleTextField(text: 'Forgot'),
+                        SizedBox(width: 3.0),
+                        TitleTextField(
+                          text: 'Password?',
+                          textColor: AppColors.appColor,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 35.0),
+                    CustomButton(
+                      text: 'Login',
+                      padding: 15.0,
+                      onPressed: login,
+                    ),
+                    SizedBox(height: 20.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TitleTextField(
+                          text: "Don't have an account?",
+                          fontSize: 15.0,
+                        ),
+                        SizedBox(width: 5.0),
+                        TitleTextField(
+                          text: 'Sign Up',
+                          textColor: AppColors.appColor,
+                          fontSize: 15.0,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

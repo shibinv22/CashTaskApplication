@@ -102,15 +102,17 @@ class TitleTextField extends StatelessWidget {
   }
 }
 
+//OtpBox
 class OtpBox extends StatelessWidget {
   final bool incorrectOtp;
   final TextEditingController controller;
   final String? Function(String?) validation;
 
-  OtpBox(
-      {required this.incorrectOtp,
-      required this.controller,
-      required this.validation});
+  OtpBox({
+    required this.incorrectOtp,
+    required this.controller,
+    required this.validation,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(

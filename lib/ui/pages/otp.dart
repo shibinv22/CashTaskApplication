@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
-import 'package:untitled1/ui/pages/homeScreen.dart';
+import 'package:untitled1/ui/pages/home/homeScreen.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/ui/widgets/customRepeatingTexts.dart';
 import 'package:untitled1/utils/constants.dart';

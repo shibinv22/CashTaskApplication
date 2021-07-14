@@ -62,7 +62,6 @@ class ApiService {
     } else {
       print('code error..');
       var convertedToJson = jsonDecode(otpResponse.body);
-
       return OtpResponse.fromJson(convertedToJson);
     }
   }
@@ -80,9 +79,13 @@ class ApiService {
     );
 
     if (response.statusCode == 200) {
-      return RecentTransactions.fromJson(jsonDecode(response.body));
+      var convertedToJson = jsonDecode(response.body);
+      return RecentTransactions.fromJson(convertedToJson);
     } else {
-      throw Exception('Failed to load album');
+      print('code error..');
+
+      var convertedToJson = jsonDecode(response.body);
+      return RecentTransactions.fromJson(convertedToJson);
     }
   }
 }
