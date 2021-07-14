@@ -2,6 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:untitled1/utils/constants.dart';
 
+//Loading...
+class Loading extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text('Loading...'),
+          SizedBox(
+            height: 5.0,
+          ),
+          CircularProgressIndicator(),
+        ],
+      ),
+    );
+  }
+}
+
 //InputFormField
 class CustomTextFormField extends StatelessWidget {
   final bool autovalidate;
