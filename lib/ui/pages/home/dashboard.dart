@@ -61,8 +61,10 @@ class _DashboardState extends State<Dashboard> {
             height: 270.0,
             child: FutureBuilder<RecentTransactions>(
               future: recentTransactions,
-              builder: (context, snapshot) {
-                if (snapshot.data == null && snapshot.hasData) {
+              builder: (context, AsyncSnapshot<RecentTransactions> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done &&
+                    snapshot.data == null &&
+                    snapshot.hasData) {
                   List<RecentTransactions> recent = <RecentTransactions>[];
                   for (int i = 0; i < 100; i++) {
                     recent.add(
@@ -81,11 +83,7 @@ class _DashboardState extends State<Dashboard> {
                         .toList(),
                   );
                 } else {
-                  return Container(
-                    child: Center(
-                      child: Text('Loading...'),
-                    ),
-                  );
+                  return Loading();
                 }
               },
             ),
