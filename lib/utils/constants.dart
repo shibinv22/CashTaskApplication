@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppUrl {
-  static const String loginBaseUrl = 'https://auth.mercurydev.tk/login';
-  static const String dashboardURL = '';
-  static const String recentTransactionsURL =
-      'https://api-cash.mercurydev.tk/api/transaction/recent';
+  static const String baseUrl = 'https://api-cash.mercurydev.tk/api';
+  static const String loginOtpUrl = 'https://auth.mercurydev.tk/login';
+  static const String swipeCardsURL = baseUrl + '/balance/resume';
+  static const String recentTransactionsURL = baseUrl + '/transaction/recent';
+  static const String profileURL = baseUrl + '/who-is';
 }
 
 class Texts {
@@ -18,6 +19,12 @@ class Images {
   static const String logo = '${imagePath}mercury_logo$pathExtension';
   static const String otpSuccess = '${imagePath}correct_otp$pathExtension';
   static const String otpFailure = '${imagePath}incorrect_otp$pathExtension';
+  static const String eurWhite = '${imagePath}eurWhite$pathExtension';
+  static const String eurGreen = '${imagePath}eurGreen$pathExtension';
+  static const String dollar = '${imagePath}dollar$pathExtension';
+  static const String dash = '${imagePath}dash$pathExtension';
+  static const String ethren = '${imagePath}ethren$pathExtension';
+  static const String bitcoin = '${imagePath}bitcoin$pathExtension';
 }
 
 class AppColors {

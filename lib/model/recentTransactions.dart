@@ -83,7 +83,7 @@ class Datum {
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         date: DateTime.parse(json["date"]),
-        currency: json["currency"],
+        currency: json["currency"] == null ? null : json["currency"],
         fiatCurrency: fiatCurrencyValues.map![json["fiat_currency"]],
         operationType: json["operationType"],
         fee: json["fee"],
@@ -94,7 +94,7 @@ class Datum {
         rate: json["rate"] == null ? null : Rate.fromJson(json["rate"]),
         source: json["source"],
         transactionId: json["transactionId"],
-        sourceTable: json["source_table"],
+        sourceTable: json["source_table"] == null ? null : json["source_table"],
         txTypeId: json["tx_type_id"],
         status: json["status"],
         address: json["address"],
@@ -142,15 +142,15 @@ class Rate {
   double? usd;
   double? eur;
   double? gbp;
-  int? ars;
-  int? clp;
+  double? ars;
+  double? clp;
 
   factory Rate.fromJson(Map<String, dynamic> json) => Rate(
-        usd: json["USD"].toDouble(),
-        eur: json["EUR"].toDouble(),
+        usd: json["USD"] == null ? null : json["USD"].toDouble(),
+        eur: json["EUR"] == null ? null : json["EUR"].toDouble(),
         gbp: json["GBP"] == null ? null : json["GBP"].toDouble(),
-        ars: json["ARS"] == null ? null : json["ARS"],
-        clp: json["CLP"] == null ? null : json["CLP"],
+        ars: json["ARS"] == null ? null : json["ARS"].toDouble(),
+        clp: json["CLP"] == null ? null : json["CLP"].toDouble(),
       );
 
   Map<String, dynamic> toJson() => {

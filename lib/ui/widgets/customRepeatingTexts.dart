@@ -46,18 +46,28 @@ class ResendToNumberText extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TitleTextField(text: "Didn't get your code?,"),
-              SizedBox(width: 2.0),
+              TitleTextField(
+                text: "Didn't get your code?,",
+                fontSize: 12.0,
+              ),
+              SizedBox(width: 3.0),
               TitleTextField(
                 text: "Click here",
+                fontSize: 12.0,
                 textColor: AppColors.appColor,
               ),
-              SizedBox(width: 2.0),
-              TitleTextField(text: "to send a"),
+              SizedBox(width: 3.0),
+              TitleTextField(
+                text: "to send a",
+                fontSize: 12.0,
+              ),
             ],
           ),
           SizedBox(height: 2.0),
-          TitleTextField(text: 'new one'),
+          TitleTextField(
+            text: 'new one',
+            fontSize: 12.0,
+          ),
         ],
       ),
     );

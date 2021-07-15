@@ -72,26 +72,25 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 35.0),
+                    SizedBox(height: 30.0),
                     CustomButton(
                       text: 'Login',
                       padding: 15.0,
                       onPressed: login,
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 30.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
                       children: [
                         TitleTextField(
                           text: "Don't have an account?",
-                          fontSize: 15.0,
+                          fontSize: 12.0,
                         ),
                         SizedBox(width: 5.0),
                         TitleTextField(
                           text: 'Sign Up',
                           textColor: AppColors.appColor,
-                          fontSize: 15.0,
+                          fontSize: 12.0,
                         ),
                       ],
                     )
@@ -110,7 +109,6 @@ class _LoginPageState extends State<LoginPage> {
       var email = emailController.text;
       var password = passwordController.text;
       var res = await api.loginUser(email, password, "2", 2);
-      print(res);
       if (res.answerToken != null && res.answerToken!.isNotEmpty) {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return OtpPage();

@@ -4,16 +4,25 @@ import 'package:untitled1/utils/constants.dart';
 
 //Loading...
 class Loading extends StatelessWidget {
+  final Color? color;
+  final String text;
+  Loading({
+    this.color = AppColors.appColor,
+    required this.text,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Loading...'),
+          Text(text),
           SizedBox(
-            height: 5.0,
+            height: 8.0,
           ),
-          CircularProgressIndicator(),
+          CircularProgressIndicator(
+            color: color,
+          ),
         ],
       ),
     );
@@ -165,6 +174,36 @@ class OtpBox extends StatelessWidget {
                   filled: true,
                 ),
         ),
+      ),
+    );
+  }
+}
+
+class RecentTransactionsTextField extends StatelessWidget {
+  final String text;
+
+  final double? fontSize;
+
+  RecentTransactionsTextField({
+    required this.text,
+    this.fontSize = 15.0,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Colors.grey,
+              fontSize: fontSize,
+            ),
+            maxLines: 1,
+          ),
+        ],
       ),
     );
   }

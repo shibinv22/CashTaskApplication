@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled1/model/loginResponse.dart';
 import 'package:untitled1/model/otpResponse.dart';
 import 'package:untitled1/model/recentTransactions.dart';
+import 'package:untitled1/model/swipeCardsResponse.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class ApiService {
@@ -12,7 +13,7 @@ class ApiService {
       String email, String password, String version, int os) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var response = await http.post(
-      Uri.parse(AppUrl.loginBaseUrl),
+      Uri.parse(AppUrl.loginOtpUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -43,7 +44,7 @@ class ApiService {
     print(bearerToken);
 
     var otpResponse = await http.put(
-      Uri.parse(AppUrl.loginBaseUrl),
+      Uri.parse(AppUrl.loginOtpUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $bearerToken',
@@ -86,6 +87,29 @@ class ApiService {
 
       var convertedToJson = jsonDecode(response.body);
       return RecentTransactions.fromJson(convertedToJson);
+    }
+  }
+
+  Future<SwipeResponse> swipeCardsBalance() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    late String? bearerToken = sharedPreferences.getString("access_token");
+    print(bearerToken);
+    final response = await http.get(
+      Uri.parse(AppUrl.swipeCardsURL),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $bearerToken',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      var convertedToJson = jsonDecode(response.body);
+      return SwipeResponse.fromJson(convertedToJson);
+    } else {
+      print('code error..');
+
+      var convertedToJson = jsonDecode(response.body);
+      return SwipeResponse.fromJson(convertedToJson);
     }
   }
 }

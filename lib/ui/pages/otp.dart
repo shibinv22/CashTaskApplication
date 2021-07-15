@@ -74,7 +74,6 @@ class _OtpPageState extends State<OtpPage> {
   void otpCheck() async {
     var token = otpController.text;
     var res = await api.userOTP('otp', token);
-    print(res);
     setState(() {
       incorrectOtp = res.message != null && res.message == 'Authorization Fail';
     });
