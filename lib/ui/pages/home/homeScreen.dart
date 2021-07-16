@@ -43,9 +43,19 @@ class _HomeScreenState extends State<HomeScreen>
             ],
           ),
         ),
-        leading: Icon(
-          Icons.message,
-          color: AppColors.appColor,
+        leading: IconButton(
+          icon: Icon(
+            Icons.message,
+            color: AppColors.appColor,
+          ),
+          onPressed: () {
+            final snackBar = SnackBar(
+              content: Text('Feature coming soon...'),
+              backgroundColor: AppColors.appColor,
+              duration: const Duration(seconds: 1),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          },
         ),
         actions: [
           IconButton(
@@ -54,7 +64,14 @@ class _HomeScreenState extends State<HomeScreen>
               color: Colors.grey[300],
               size: 25.0,
             ),
-            onPressed: () {},
+            onPressed: () {
+              final snackBar = SnackBar(
+                content: Text('Feature coming soon...'),
+                backgroundColor: AppColors.appColor,
+                duration: const Duration(seconds: 1),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
           )
         ],
         centerTitle: true,

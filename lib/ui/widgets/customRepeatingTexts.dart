@@ -52,6 +52,14 @@ class ResendToNumberText extends StatelessWidget {
               ),
               SizedBox(width: 3.0),
               TitleTextField(
+                onTap: () {
+                  final snackBar = SnackBar(
+                    content: Text('New OTP sent'),
+                    backgroundColor: AppColors.appColor,
+                    duration: const Duration(seconds: 1),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
                 text: "Click here",
                 fontSize: 12.0,
                 textColor: AppColors.appColor,

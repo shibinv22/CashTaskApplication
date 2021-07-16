@@ -32,9 +32,10 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 110.0),
+              margin: EdgeInsets.only(top: 120.0),
               child: Image.asset(Images.logo),
             ),
+            SizedBox(height: 25.0),
             Form(
               key: _formKey,
               child: Padding(
@@ -86,6 +87,15 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         SizedBox(width: 3.0),
                         TitleTextField(
+                          onTap: () {
+                            final snackBar = SnackBar(
+                              content: Text('Feature coming soon...'),
+                              backgroundColor: AppColors.appColor,
+                              duration: const Duration(seconds: 1),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
                           text: 'Password?',
                           fontSize: 13.0,
                           textColor: AppColors.appColor,
@@ -108,6 +118,15 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         SizedBox(width: 5.0),
                         TitleTextField(
+                          onTap: () {
+                            final snackBar = SnackBar(
+                              content: Text('Feature coming soon...'),
+                              backgroundColor: AppColors.appColor,
+                              duration: const Duration(seconds: 1),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
                           text: 'Sign Up',
                           textColor: AppColors.appColor,
                           fontSize: 13.0,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:untitled1/ui/pages/login.dart';
+import 'package:untitled1/ui/pages/splash.dart';
 
 void main() {
   RenderErrorBox.backgroundColor = Colors.purple;
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginPage(),
+      home: SplashPage(),
       debugShowCheckedModeBanner: false,
     );
   }

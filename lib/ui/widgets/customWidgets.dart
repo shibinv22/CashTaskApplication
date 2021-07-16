@@ -95,18 +95,47 @@ class CustomButton extends StatelessWidget {
   }
 }
 
+class LoginSplash extends StatelessWidget {
+  final void Function()? onPressed;
+
+  LoginSplash({
+    required this.onPressed,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return OutlineButton(
+      padding: EdgeInsets.all(15.0),
+      borderSide: BorderSide(color: AppColors.appColor),
+      highlightedBorderColor: AppColors.appColor,
+      shape: const StadiumBorder(),
+      onPressed: onPressed,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Login',
+            style: TextStyle(color: AppColors.appColor),
+          )
+        ],
+      ),
+    );
+  }
+}
+
 //BoldTextField
 class TitleTextField extends StatelessWidget {
   final String text;
   final double padding;
   final Color textColor;
   final double? fontSize;
+  final void Function()? onTap;
 
   TitleTextField({
     required this.text,
     this.padding = 20.0,
     this.textColor = Colors.black,
     this.fontSize,
+    this.onTap,
   });
 
   @override
@@ -114,14 +143,17 @@ class TitleTextField extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          Text(
-            text,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: textColor,
-              fontSize: fontSize,
+          InkWell(
+            onTap: onTap,
+            child: Text(
+              text,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: textColor,
+                fontSize: fontSize,
+              ),
+              maxLines: 1,
             ),
-            maxLines: 1,
           ),
         ],
       ),
