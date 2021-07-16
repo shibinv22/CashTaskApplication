@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
 import 'package:untitled1/ui/pages/otp.dart';
@@ -17,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   String message = '';
   final ApiService api = ApiService();
-  bool remember = false;
+  bool? remember = false;
 
   @override
   void dispose() {
@@ -62,40 +61,38 @@ class _LoginPageState extends State<LoginPage> {
                       validation: StringFunctions.passwordValidation,
                       controller: passwordController,
                     ),
-                    SizedBox(height: 15.0),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.start,
-                    //   children: [
-                    //     Checkbox(
-                    //       value: remember,
-                    //       onChanged: (value) {
-                    //         setState(() {
-                    //           this.remember = remember;
-                    //         });
-                    //       },
-                    //       activeColor: AppColors.appColor,
-                    //     ),
-                    //     TitleTextField(
-                    //       text: 'Remember me',
-                    //       fontSize: 13.0,
-                    //     ),
-                    //   ],
-                    // ),
+                    CheckboxListTile(
+                      title: Text(
+                        'Remember me',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      value: remember,
+                      onChanged: (remember) {
+                        setState(() {
+                          this.remember = remember;
+                        });
+                      },
+                      activeColor: AppColors.appColor,
+                      controlAffinity: ListTileControlAffinity.leading,
+                    ),
+                    SizedBox(height: 10.0),
                     Row(
                       children: [
                         TitleTextField(
                           text: 'Forgot',
-                          fontSize: 12.0,
+                          fontSize: 13.0,
                         ),
                         SizedBox(width: 3.0),
                         TitleTextField(
                           text: 'Password?',
-                          fontSize: 12.0,
+                          fontSize: 13.0,
                           textColor: AppColors.appColor,
                         ),
                       ],
                     ),
-                    SizedBox(height: 30.0),
+                    SizedBox(height: 20.0),
                     CustomButton(
                       text: 'Login',
                       padding: 15.0,
@@ -107,13 +104,13 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         TitleTextField(
                           text: "Don't have an account?",
-                          fontSize: 12.0,
+                          fontSize: 13.0,
                         ),
                         SizedBox(width: 5.0),
                         TitleTextField(
                           text: 'Sign Up',
                           textColor: AppColors.appColor,
-                          fontSize: 12.0,
+                          fontSize: 13.0,
                         ),
                       ],
                     )
@@ -140,7 +137,6 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           message = 'Incorrect credetials...try again';
         });
-        return Container();
       }
     }
   }
