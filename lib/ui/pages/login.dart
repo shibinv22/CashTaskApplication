@@ -17,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   String message = '';
   final ApiService api = ApiService();
+  bool remember = false;
 
   @override
   void dispose() {
@@ -62,12 +63,34 @@ class _LoginPageState extends State<LoginPage> {
                       controller: passwordController,
                     ),
                     SizedBox(height: 15.0),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   children: [
+                    //     Checkbox(
+                    //       value: remember,
+                    //       onChanged: (value) {
+                    //         setState(() {
+                    //           this.remember = remember;
+                    //         });
+                    //       },
+                    //       activeColor: AppColors.appColor,
+                    //     ),
+                    //     TitleTextField(
+                    //       text: 'Remember me',
+                    //       fontSize: 13.0,
+                    //     ),
+                    //   ],
+                    // ),
                     Row(
                       children: [
-                        TitleTextField(text: 'Forgot'),
+                        TitleTextField(
+                          text: 'Forgot',
+                          fontSize: 12.0,
+                        ),
                         SizedBox(width: 3.0),
                         TitleTextField(
                           text: 'Password?',
+                          fontSize: 12.0,
                           textColor: AppColors.appColor,
                         ),
                       ],
