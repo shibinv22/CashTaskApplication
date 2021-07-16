@@ -3,7 +3,7 @@ import 'package:untitled1/model/recentTransactions.dart';
 import 'package:untitled1/model/swipeCardsResponse.dart';
 import 'package:untitled1/network/api.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
-import 'package:untitled1/ui/widgets/holdingCards.dart';
+import 'package:untitled1/ui/widgets/holdings.dart';
 import 'package:untitled1/ui/widgets/transactionCategories.dart';
 import 'package:untitled1/utils/constants.dart';
 
@@ -253,199 +253,66 @@ Widget userBalance(data) {
     child: Row(
       children: [
         //Total holdings
-        HoldingsCards(
+        HoldingsCardsGradient(
           amount: '€ ' + data.EUR.toString(),
-          amountStyle: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
           title: ('Total Holdings (EUR)'),
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
           image: Image.asset(
             Images.eurWhite,
             height: 40.0,
             width: 40.0,
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            gradient: LinearGradient(
-              colors: [
-                Colors.lightBlue,
-                Colors.green,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 5.0,
-                offset: Offset(0, 5),
-              )
-            ],
-          ),
         ),
         //Euro Wallet
         HoldingsCards(
           amount: '€ ' + data.EUR.toString(),
-          amountStyle: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
           title: 'Euro Wallet',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
           image: Image.asset(
             Images.eurGreen,
             height: 40.0,
             width: 40.0,
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 5.0,
-                offset: Offset(0, 5),
-              )
-            ],
-          ),
         ),
         //USD Wallet
         HoldingsCards(
           amount: '\$ ' + data.USD.toString(),
-          amountStyle: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
           title: 'USD Wallet',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
           image: Image.asset(
             Images.dollar,
             height: 40.0,
             width: 40.0,
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 5.0,
-                offset: Offset(0, 5),
-              )
-            ],
-          ),
         ),
         //Ethereum
         HoldingsCards(
           amount: data.ETH.toString() + ' ETH',
-          amountStyle: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
           title: 'Ethereum',
           subTitle: '€ ' + data.EUR.toString(),
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
           image: Image.asset(
             Images.ethren,
             height: 40.0,
             width: 40.0,
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 5.0,
-                offset: Offset(0, 5),
-              )
-            ],
-          ),
         ),
         //Dash
         HoldingsCards(
           amount: data.DASH.toString() + ' DASH',
-          amountStyle: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
           title: 'Dash',
           subTitle: '€ ' + data.EUR.toString(),
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
           image: Image.asset(
             Images.dash,
             height: 40.0,
             width: 40.0,
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 5.0,
-                offset: Offset(0, 5),
-              )
-            ],
-          ),
         ),
         //Bitcoin
         HoldingsCards(
           amount: data.BTC.toString() + ' BTC',
-          amountStyle: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
           title: 'Bitcoin',
           subTitle: '€ ' + data.EUR.toString(),
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
           image: Image.asset(
             Images.bitcoin,
             height: 40.0,
             width: 40.0,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25.0),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 5.0,
-                offset: Offset(0, 5),
-              )
-            ],
           ),
         ),
       ],

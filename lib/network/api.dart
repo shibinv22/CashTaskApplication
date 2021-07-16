@@ -84,7 +84,6 @@ class ApiService {
       return RecentTransactions.fromJson(convertedToJson);
     } else {
       print('code error..');
-
       var convertedToJson = jsonDecode(response.body);
       return RecentTransactions.fromJson(convertedToJson);
     }
@@ -107,7 +106,6 @@ class ApiService {
       return SwipeResponse.fromJson(convertedToJson);
     } else {
       print('code error..');
-
       var convertedToJson = jsonDecode(response.body);
       return SwipeResponse.fromJson(convertedToJson);
     }

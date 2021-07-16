@@ -58,10 +58,11 @@ class _OtpPageState extends State<OtpPage> {
               ),
               ResendToNumberText(),
               Padding(
-                padding: const EdgeInsets.all(50.0),
+                padding: EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
                 child: CustomButton(
                   text: incorrectOtp ? 'Try Again' : 'Verify',
                   onPressed: otpCheck,
+                  padding: 15.0,
                 ),
               )
             ],
