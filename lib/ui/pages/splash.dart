@@ -21,19 +21,7 @@ class _SplashPageState extends State<SplashPage> {
               margin: EdgeInsets.only(top: 150.0),
               child: Image.asset(Images.logo)),
           SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ApplicationName(
-                text: 'mercury.',
-                color: Colors.black,
-              ),
-              ApplicationName(
-                text: 'cash',
-                color: AppColors.appColor,
-              ),
-            ],
-          ),
+          ApplicationName(),
           SizedBox(height: 100.0),
           TitleTextField(
             text: 'Buy,Send And Exchange',

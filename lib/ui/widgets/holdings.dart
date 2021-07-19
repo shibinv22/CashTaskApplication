@@ -150,8 +150,8 @@ class HoldingsCardsGradient extends StatelessWidget {
               Colors.lightBlue,
               Colors.green,
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
           ),
           boxShadow: [
             BoxShadow(

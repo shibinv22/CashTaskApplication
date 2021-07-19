@@ -240,3 +240,31 @@ class RecentTransactionsTextField extends StatelessWidget {
     );
   }
 }
+
+class DashboardTabs extends StatefulWidget {
+  const DashboardTabs({Key? key}) : super(key: key);
+
+  @override
+  _DashboardTabsState createState() => _DashboardTabsState();
+}
+
+class _DashboardTabsState extends State<DashboardTabs> {
+  @override
+  Widget build(BuildContext context) {
+    return TabBar(
+      tabs: <Widget>[
+        Tab(text: "Dashboard"),
+        Tab(text: "Send"),
+        Tab(text: "Batch Send"),
+        Tab(text: "Deposit"),
+        Tab(text: "Buy/Sell"),
+        Tab(text: "Wallets"),
+        Tab(text: "Contacts"),
+        Tab(text: "Statements"),
+        Tab(text: "Transactions"),
+        Tab(text: "Settings"),
+        Tab(text: "Referral"),
+      ],
+    );
+  }
+}
