@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/ui/pages/home/dashboard.dart';
 import 'package:untitled1/ui/widgets/customRepeatingTexts.dart';
@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    _tabcontroller = TabController(length: 11, vsync: this);
+    _tabcontroller = TabController(length: 12, vsync: this);
   }
 
   @override
@@ -26,22 +26,10 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 120.0,
+        toolbarHeight: 130.0,
         title: Container(
           color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ApplicationName(
-                text: 'mercury.',
-                color: Colors.black,
-              ),
-              ApplicationName(
-                text: 'cash',
-                color: AppColors.appColor,
-              ),
-            ],
-          ),
+          child: ApplicationName(),
         ),
         leading: IconButton(
           icon: Icon(
@@ -76,47 +64,86 @@ class _HomeScreenState extends State<HomeScreen>
         ],
         centerTitle: true,
         backgroundColor: Colors.white,
-        bottom: TabBar(
-          controller: _tabcontroller,
-          isScrollable: true,
-          labelColor: AppColors.appColor,
-          unselectedLabelColor: Colors.grey,
-          indicatorColor: AppColors.appColor,
-          labelStyle: TextStyle(
-            fontSize: 15.0,
-            fontWeight: FontWeight.bold,
-            color: AppColors.appColor,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(100.0),
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 130.0),
+            child: TabBar(
+              controller: _tabcontroller,
+              isScrollable: true,
+              labelColor: AppColors.appColor,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: AppColors.appColor,
+              indicatorSize: TabBarIndicatorSize.label,
+              labelStyle: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: AppColors.appColor,
+              ),
+              labelPadding: EdgeInsets.symmetric(horizontal: 5.0),
+              tabs: <Widget>[
+                Tab(text: " "),
+                Tab(text: "Dashboard"),
+                Tab(text: "Send"),
+                Tab(text: "Batch Send"),
+                Tab(text: "Deposit"),
+                Tab(text: "Buy/Sell"),
+                Tab(text: "Wallets"),
+                Tab(text: "Contacts"),
+                Tab(text: "Statements"),
+                Tab(text: "Transactions"),
+                Tab(text: "Settings"),
+                Tab(text: "Referral"),
+              ],
+            ),
           ),
-          tabs: <Widget>[
-            Tab(text: "Dashboard"),
-            Tab(text: "Send"),
-            Tab(text: "Batch Send"),
-            Tab(text: "Deposit"),
-            Tab(text: "Buy/Sell"),
-            Tab(text: "Wallets"),
-            Tab(text: "Contacts"),
-            Tab(text: "Statements"),
-            Tab(text: "Transactions"),
-            Tab(text: "Settings"),
-            Tab(text: "Referral"),
-          ],
         ),
+
+        // bottom: TabBar(
+        //   controller: _tabcontroller,
+        //   isScrollable: true,
+        //   labelColor: AppColors.appColor,
+        //   unselectedLabelColor: Colors.grey,
+        //   indicatorColor: AppColors.appColor,
+        //   labelStyle: TextStyle(
+        //     fontSize: 15.0,
+        //     fontWeight: FontWeight.bold,
+        //     color: AppColors.appColor,
+        //   ),
+        //   tabs: <Widget>[
+        //     Tab(text: "Dashboard"),
+        //     Tab(text: "Send"),
+        //     Tab(text: "Batch Send"),
+        //     Tab(text: "Deposit"),
+        //     Tab(text: "Buy/Sell"),
+        //     Tab(text: "Wallets"),
+        //     Tab(text: "Contacts"),
+        //     Tab(text: "Statements"),
+        //     Tab(text: "Transactions"),
+        //     Tab(text: "Settings"),
+        //     Tab(text: "Referral"),
+        //   ],
+        // ),
       ),
       body: DefaultTabController(
-        length: 11,
-        child: TabBarView(controller: _tabcontroller, children: [
-          Dashboard(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-          Container(),
-        ]),
+        length: 12,
+        child: TabBarView(
+          controller: _tabcontroller,
+          children: [
+            Container(),
+            Dashboard(),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
+          ],
+        ),
       ),
     );
   }
