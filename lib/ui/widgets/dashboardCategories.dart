@@ -10,7 +10,6 @@ class _DashboardCategoriesState extends State<DashboardCategories> {
   int selectedCategoryIndex = 0;
 
   Widget _buildCategory(BuildContext context, int index) {
-    Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         setState(() {

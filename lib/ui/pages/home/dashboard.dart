@@ -8,8 +8,6 @@ import 'package:untitled1/ui/widgets/transactionCategories.dart';
 import 'package:untitled1/utils/constants.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
-
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -19,11 +17,26 @@ class _DashboardState extends State<Dashboard> {
   late Future<RecentTransactions>? recentTransactions;
   late Future<SwipeResponse>? swipeCards;
 
+  List<String> list = [];
+  int perPageItem = 1;
+  late int pageCount;
+  int selectedIndex = 0;
+  late int lastPageItemLength;
+  late PageController pageController;
+
+  final _currentPageNotifier = ValueNotifier<int>(0);
+
   @override
   void initState() {
     super.initState();
     swipeCards = api.swipeCardsBalance();
     recentTransactions = api.userRecentTransactions();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,7 +49,7 @@ class _DashboardState extends State<Dashboard> {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.only(top: 30.0, bottom: 10.0, left: 20.0),
+                    const EdgeInsets.only(top: 10.0, bottom: 10.0, left: 20.0),
                 child: Container(
                   height: size.height * 0.275,
                   child: FutureBuilder<SwipeResponse>(
@@ -204,10 +217,12 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     RecentTransactionsTextField(
                       text: data.operationTotal,
+                      fontSize: 13.0,
                     ),
                     SizedBox(width: 3.0),
                     RecentTransactionsTextField(
                       text: data.currency,
+                      fontSize: 13.0,
                     ),
                   ],
                 ),
@@ -215,17 +230,17 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     RecentTransactionsTextField(
                       text: '\$',
-                      fontSize: 12.0,
+                      fontSize: 10.0,
                     ),
                     SizedBox(width: 3.0),
                     RecentTransactionsTextField(
                       text: data.amountUsd,
-                      fontSize: 12.0,
+                      fontSize: 10.0,
                     ),
                     SizedBox(width: 3.0),
                     RecentTransactionsTextField(
                       text: 'USD',
-                      fontSize: 12.0,
+                      fontSize: 10.0,
                     ),
                   ],
                 ),

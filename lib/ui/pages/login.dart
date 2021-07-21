@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
+import 'package:untitled1/ui/pages/home/copy.dart';
 import 'package:untitled1/ui/pages/otp.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/utils/constants.dart';
@@ -62,22 +63,55 @@ class _LoginPageState extends State<LoginPage> {
                       validation: StringFunctions.passwordValidation,
                       controller: passwordController,
                     ),
-                    CheckboxListTile(
-                      title: Text(
-                        'Remember me',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                        ),
+                    SizedBox(height: 10.0),
+                    Container(
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: remember,
+                            onChanged: (remember) {
+                              setState(() {
+                                this.remember = remember;
+                              });
+                            },
+                            activeColor: AppColors.appColor,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                if (remember == false) {
+                                  remember = true;
+                                } else {
+                                  remember = false;
+                                }
+                              });
+                            },
+                            child: Text(
+                              'Remember me',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ],
                       ),
-                      value: remember,
-                      onChanged: (remember) {
-                        setState(() {
-                          this.remember = remember;
-                        });
-                      },
-                      activeColor: AppColors.appColor,
-                      controlAffinity: ListTileControlAffinity.leading,
                     ),
+                    // CheckboxListTile(
+                    //   title: Text(
+                    //     'Remember me',
+                    //     style: TextStyle(
+                    //       fontWeight: FontWeight.w500,
+                    //     ),
+                    //   ),
+                    //   value: remember,
+                    //   onChanged: (remember) {
+                    //     setState(() {
+                    //       this.remember = remember;
+                    //     });
+                    //   },
+                    //   activeColor: AppColors.appColor,
+                    //   controlAffinity: ListTileControlAffinity.leading,
+                    // ),
                     SizedBox(height: 10.0),
                     Row(
                       children: [

@@ -22,6 +22,7 @@ class HoldingsCards extends StatelessWidget {
         bottom: 10.0,
         left: 10.0,
         right: 30.0,
+        top: 10.0,
       ),
       child: Container(
         width: 300.0,
@@ -32,8 +33,8 @@ class HoldingsCards extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black,
-              blurRadius: 5.0,
-              offset: Offset(0, 5),
+              blurRadius: 1.0,
+              offset: Offset(0, 0),
             )
           ],
         ),
@@ -45,23 +46,31 @@ class HoldingsCards extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                   top: 10.0,
-                  left: 5.0,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    image,
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0,
-                      ),
+                    Row(
+                      children: [
+                        image,
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.0,
+                          ),
+                        ),
+                        SizedBox(width: 40.0),
+                      ],
                     ),
-                    Icon(
-                      Icons.more_horiz,
-                      color: Colors.black,
+                    SizedBox(width: 40.0),
+                    Container(
+                      padding: EdgeInsets.only(right: 1.0),
+                      child: Icon(
+                        Icons.more_horiz,
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -88,25 +97,37 @@ class HoldingsCards extends StatelessWidget {
                         fontSize: 17.0,
                       ),
                     ),
-                    // TabBar(
-                    //   controller: tabcontroller,
-                    //   isScrollable: true,
-                    //   labelColor: AppColors.appColor,
-                    //   unselectedLabelColor: Colors.grey,
-                    //   indicatorColor: AppColors.appColor,
-                    //   labelStyle: TextStyle(
-                    //     fontSize: 10.0,
-                    //     fontWeight: FontWeight.bold,
-                    //     color: AppColors.appColor,
-                    //   ),
-                    //   tabs: <Widget>[
-                    //     Tab(text: "Dashboard"),
-                    //     Tab(text: "Send"),
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
+              Container(
+                padding: EdgeInsets.only(
+                  top: 12.0,
+                  left: 5.0,
+                ),
+                width: 90.0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'View Details',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    Container(
+                      decoration: UnderlineTabIndicator(
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -139,6 +160,7 @@ class HoldingsCardsGradient extends StatelessWidget {
         bottom: 10.0,
         left: 10.0,
         right: 30.0,
+        top: 10.0,
       ),
       child: Container(
         width: 300.0,
@@ -156,8 +178,8 @@ class HoldingsCardsGradient extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black,
-              blurRadius: 5.0,
-              offset: Offset(0, 5),
+              blurRadius: 3.0,
+              offset: Offset(0, 0),
             )
           ],
         ),
@@ -169,23 +191,30 @@ class HoldingsCardsGradient extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                   top: 10.0,
-                  left: 5.0,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    image,
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0,
-                      ),
+                    Row(
+                      children: [
+                        image,
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.0,
+                          ),
+                        ),
+                      ],
                     ),
-                    Icon(
-                      Icons.more_horiz,
-                      color: Colors.white,
+                    SizedBox(width: 40.0),
+                    Container(
+                      padding: EdgeInsets.only(right: 1.0),
+                      child: Icon(
+                        Icons.more_horiz,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
@@ -212,25 +241,37 @@ class HoldingsCardsGradient extends StatelessWidget {
                         fontSize: 17.0,
                       ),
                     ),
-                    // TabBar(
-                    //   controller: tabcontroller,
-                    //   isScrollable: true,
-                    //   labelColor: AppColors.appColor,
-                    //   unselectedLabelColor: Colors.grey,
-                    //   indicatorColor: AppColors.appColor,
-                    //   labelStyle: TextStyle(
-                    //     fontSize: 10.0,
-                    //     fontWeight: FontWeight.bold,
-                    //     color: AppColors.appColor,
-                    //   ),
-                    //   tabs: <Widget>[
-                    //     Tab(text: "Dashboard"),
-                    //     Tab(text: "Send"),
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
+              Container(
+                padding: EdgeInsets.only(
+                  top: 12.0,
+                  left: 5.0,
+                ),
+                width: 90.0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'View Details',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    Container(
+                      decoration: UnderlineTabIndicator(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
