@@ -1,5 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:swipe_back_detector/swipe_back_detector.dart';
 import 'package:untitled1/ui/pages/home/dashboard.dart';
 import 'package:untitled1/ui/widgets/customRepeatingTexts.dart';
 import 'package:untitled1/utils/constants.dart';
@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    _tabcontroller = TabController(length: 12, vsync: this);
+    _tabcontroller = TabController(length: 12, vsync: this, initialIndex: 1);
   }
 
   @override
@@ -67,10 +67,11 @@ class _HomeScreenState extends State<HomeScreen>
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(100.0),
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 130.0),
+            // child: DashboardCategories(),
             child: TabBar(
               controller: _tabcontroller,
               isScrollable: true,
+              physics: BouncingScrollPhysics(),
               labelColor: AppColors.appColor,
               unselectedLabelColor: Colors.grey,
               indicatorColor: AppColors.appColor,
@@ -82,8 +83,25 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               labelPadding: EdgeInsets.symmetric(horizontal: 5.0),
               tabs: <Widget>[
-                Tab(text: " "),
-                Tab(text: "Dashboard"),
+                Tab(
+                    child: GestureDetector(
+                  child: TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _tabcontroller.index = 1;
+                      });
+                    },
+                    child: Text("                          "),
+                  ),
+                  onTap: () {
+                    setState(() {
+                      _tabcontroller.index = 1;
+                    });
+                  },
+                )),
+                Tab(
+                  text: "Dashboard",
+                ),
                 Tab(text: "Send"),
                 Tab(text: "Batch Send"),
                 Tab(text: "Deposit"),
@@ -98,32 +116,6 @@ class _HomeScreenState extends State<HomeScreen>
             ),
           ),
         ),
-
-        // bottom: TabBar(
-        //   controller: _tabcontroller,
-        //   isScrollable: true,
-        //   labelColor: AppColors.appColor,
-        //   unselectedLabelColor: Colors.grey,
-        //   indicatorColor: AppColors.appColor,
-        //   labelStyle: TextStyle(
-        //     fontSize: 15.0,
-        //     fontWeight: FontWeight.bold,
-        //     color: AppColors.appColor,
-        //   ),
-        //   tabs: <Widget>[
-        //     Tab(text: "Dashboard"),
-        //     Tab(text: "Send"),
-        //     Tab(text: "Batch Send"),
-        //     Tab(text: "Deposit"),
-        //     Tab(text: "Buy/Sell"),
-        //     Tab(text: "Wallets"),
-        //     Tab(text: "Contacts"),
-        //     Tab(text: "Statements"),
-        //     Tab(text: "Transactions"),
-        //     Tab(text: "Settings"),
-        //     Tab(text: "Referral"),
-        //   ],
-        // ),
       ),
       body: DefaultTabController(
         length: 12,
