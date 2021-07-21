@@ -1,7 +1,6 @@
 import 'dart:ui';
-
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:untitled1/model/recentTransactions.dart';
 import 'package:untitled1/model/swipeCardsResponse.dart';
 import 'package:untitled1/network/api.dart';
@@ -19,21 +18,19 @@ class _DashboardState extends State<Dashboard> {
   final ApiService api = ApiService();
   late Future<RecentTransactions>? recentTransactions;
   late Future<SwipeResponse>? swipeCards;
-  late PageController pageController;
-  bool cardSlider = false;
-
-  late int cardIndex;
+  late PageController pageControllerDash;
 
   @override
   void initState() {
     super.initState();
     swipeCards = api.swipeCardsBalance();
     recentTransactions = api.userRecentTransactions();
+    pageControllerDash = PageController();
   }
 
   @override
   void dispose() {
-    pageController.dispose();
+    pageControllerDash.dispose();
     super.dispose();
   }
 
@@ -55,8 +52,6 @@ class _DashboardState extends State<Dashboard> {
                       if (snapshot.data != null && snapshot.hasData) {
                         List<SwipeResponse> balance = <SwipeResponse>[];
                         for (int i = 0; i < 1; i++) {
-                          // cardIndex = snapshot;
-
                           balance.add(
                             SwipeResponse(
                               data: BalanceDatum(
@@ -79,6 +74,10 @@ class _DashboardState extends State<Dashboard> {
                           children:
                               balance.map((e) => userBalance(e.data)).toList(),
                         );
+                        // return CardSelector(
+                        //   cards:
+                        //       balance.map((e) => userBalance(e.data)).toList(),
+                        // );
                       } else {
                         return Loading(
                           text: 'Checking your holdings..Please wait',
@@ -89,23 +88,15 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
               ),
-
-              DotsIndicator(
-                dotsCount: 6,
+              SmoothPageIndicator(
+                controller: pageControllerDash,
+                count: 6,
+                effect: ExpandingDotsEffect(
+                  activeDotColor: Colors.greenAccent,
+                  dotColor: Colors.grey,
+                  dotHeight: 12.0,
+                ),
               ),
-              // Container(
-              //   margin: EdgeInsets.only(
-              //     bottom: 40.0,
-              //   ),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       CardSlider(
-              //         color: cardSlider ? AppColors.appColor : Colors.black,
-              //       ),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
           SizedBox(height: 20.0),
@@ -303,77 +294,81 @@ class _DashboardState extends State<Dashboard> {
       ),
     );
   }
-}
 
-Widget userBalance(data) {
-  return SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: Row(
-      children: [
-        //Total holdings
-        HoldingsCardsGradient(
-          amount: '€ ' + data.EUR.toString(),
-          title: ('Total Holdings (EUR)'),
-          image: Image.asset(
-            Images.eurWhite,
-            height: 40.0,
-            width: 40.0,
+  Widget userBalance(data) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: PageView(
+        controller: pageControllerDash,
+        children: [
+          //Total holdings
+          MaterialButton(
+            onPressed: () {},
+            child: HoldingsCardsGradient(
+              amount: '€ ' + data.EUR.toString(),
+              title: ('Total Holdings (EUR)'),
+              image: Image.asset(
+                Images.eurWhite,
+                height: 40.0,
+                width: 40.0,
+              ),
+            ),
           ),
-        ),
-        //Euro Wallet
-        HoldingsCards(
-          amount: '€ ' + data.EUR.toString(),
-          title: 'Euro Wallet',
-          image: Image.asset(
-            Images.eurGreen,
-            height: 40.0,
-            width: 40.0,
+          //Euro Wallet
+          HoldingsCards(
+            amount: '€ ' + data.EUR.toString(),
+            title: 'Euro Wallet',
+            image: Image.asset(
+              Images.eurGreen,
+              height: 40.0,
+              width: 40.0,
+            ),
           ),
-        ),
-        //USD Wallet
-        HoldingsCards(
-          amount: '\$ ' + data.USD.toString(),
-          title: 'USD Wallet',
-          image: Image.asset(
-            Images.dollar,
-            height: 40.0,
-            width: 40.0,
+          //USD Wallet
+          HoldingsCards(
+            amount: '\$ ' + data.USD.toString(),
+            title: 'USD Wallet',
+            image: Image.asset(
+              Images.dollar,
+              height: 40.0,
+              width: 40.0,
+            ),
           ),
-        ),
-        //Ethereum
-        HoldingsCards(
-          amount: data.ETH.toString() + ' ETH',
-          title: 'Ethereum',
-          subTitle: '€ ' + data.EUR.toString(),
-          image: Image.asset(
-            Images.ethren,
-            height: 40.0,
-            width: 40.0,
+          //Ethereum
+          HoldingsCards(
+            amount: data.ETH.toString() + ' ETH',
+            title: 'Ethereum',
+            subTitle: '€ ' + data.EUR.toString(),
+            image: Image.asset(
+              Images.ethren,
+              height: 40.0,
+              width: 40.0,
+            ),
           ),
-        ),
-        //Dash
-        HoldingsCards(
-          amount: data.DASH.toString() + ' DASH',
-          title: 'Dash',
-          subTitle: '€ ' + data.EUR.toString(),
-          image: Image.asset(
-            Images.dash,
-            height: 40.0,
-            width: 40.0,
+          //Dash
+          HoldingsCards(
+            amount: data.DASH.toString() + ' DASH',
+            title: 'Dash',
+            subTitle: '€ ' + data.EUR.toString(),
+            image: Image.asset(
+              Images.dash,
+              height: 40.0,
+              width: 40.0,
+            ),
           ),
-        ),
-        //Bitcoin
-        HoldingsCards(
-          amount: data.BTC.toString() + ' BTC',
-          title: 'Bitcoin',
-          subTitle: '€ ' + data.EUR.toString(),
-          image: Image.asset(
-            Images.bitcoin,
-            height: 40.0,
-            width: 40.0,
+          //Bitcoin
+          HoldingsCards(
+            amount: data.BTC.toString() + ' BTC',
+            title: 'Bitcoin',
+            subTitle: '€ ' + data.EUR.toString(),
+            image: Image.asset(
+              Images.bitcoin,
+              height: 40.0,
+              width: 40.0,
+            ),
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }
