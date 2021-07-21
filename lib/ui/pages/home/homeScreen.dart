@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen>
                       child: Row(
                         children: [
                           SizedBox(width: 130),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(0,
                                   duration: Duration(milliseconds: 500),
@@ -203,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(1,
                                   duration: Duration(milliseconds: 500),
@@ -245,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(2,
                                   duration: Duration(milliseconds: 500),
@@ -288,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(3,
                                   duration: Duration(milliseconds: 500),
@@ -330,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(4,
                                   duration: Duration(milliseconds: 500),
@@ -372,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(5,
                                   duration: Duration(milliseconds: 500),
@@ -414,7 +414,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(6,
                                   duration: Duration(milliseconds: 500),
@@ -456,7 +456,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(7,
                                   duration: Duration(milliseconds: 500),
@@ -498,7 +498,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(8,
                                   duration: Duration(milliseconds: 500),
@@ -540,7 +540,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(9,
                                   duration: Duration(milliseconds: 500),
@@ -582,7 +582,7 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          FlatButton(
+                          MaterialButton(
                             onPressed: () {
                               pageController.animateToPage(10,
                                   duration: Duration(milliseconds: 500),
@@ -646,15 +646,42 @@ class _HomeScreenState extends State<HomeScreen>
                   onHorizontalSwipe: _onHorizontalSwipe,
                   child: Text("Send"),
                 ),
-                Text("Batch Send"),
-                Text("Deposit"),
-                Text("Buy/Sell"),
-                Text("Wallets"),
-                Text("Contacts"),
-                Text("Statements"),
-                Text("Transactions"),
-                Text("Settings"),
-                Text("Referrals"),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Batch Send"),
+                ),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Deposit"),
+                ),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Buy/Sell"),
+                ),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Wallets"),
+                ),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Contacts"),
+                ),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Statements"),
+                ),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Transactions"),
+                ),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Settings"),
+                ),
+                SimpleGestureDetector(
+                  onHorizontalSwipe: _onHorizontalSwipe,
+                  child: Text("Referrals"),
+                ),
               ],
             ),
           ),
@@ -669,12 +696,17 @@ class _HomeScreenState extends State<HomeScreen>
         pageController.animateToPage(currentSelection,
             duration: Duration(milliseconds: 500), curve: Curves.ease);
         setState(() {
-          
+          selectedItem(currentSelection + 1);
         });
         print('Swiped left!');
       } else {
+        int rightSwipe = (currentSelection) - 1;
+        setState(() {
+          selectedItem(rightSwipe);
+        });
         pageController.animateToPage((currentSelection - 1),
             duration: Duration(milliseconds: 500), curve: Curves.ease);
+
         print('Swiped right!');
       }
     });
