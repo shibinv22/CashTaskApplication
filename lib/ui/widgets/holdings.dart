@@ -22,7 +22,7 @@ class HoldingsCards extends StatelessWidget {
         bottom: 10.0,
         left: 10.0,
         right: 30.0,
-        top: 20.0,
+        top: 10.0,
       ),
       child: Container(
         width: 300.0,
