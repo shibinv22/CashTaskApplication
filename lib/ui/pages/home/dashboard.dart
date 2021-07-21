@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/model/recentTransactions.dart';
 import 'package:untitled1/model/swipeCardsResponse.dart';
@@ -16,15 +19,10 @@ class _DashboardState extends State<Dashboard> {
   final ApiService api = ApiService();
   late Future<RecentTransactions>? recentTransactions;
   late Future<SwipeResponse>? swipeCards;
-
-  List<String> list = [];
-  int perPageItem = 1;
-  late int pageCount;
-  int selectedIndex = 0;
-  late int lastPageItemLength;
   late PageController pageController;
+  bool cardSlider = false;
 
-  final _currentPageNotifier = ValueNotifier<int>(0);
+  late int cardIndex;
 
   @override
   void initState() {
@@ -48,8 +46,7 @@ class _DashboardState extends State<Dashboard> {
           Column(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 10.0, bottom: 10.0, left: 20.0),
+                padding: const EdgeInsets.only(top: 10.0, left: 20.0),
                 child: Container(
                   height: size.height * 0.275,
                   child: FutureBuilder<SwipeResponse>(
@@ -58,6 +55,8 @@ class _DashboardState extends State<Dashboard> {
                       if (snapshot.data != null && snapshot.hasData) {
                         List<SwipeResponse> balance = <SwipeResponse>[];
                         for (int i = 0; i < 1; i++) {
+                          // cardIndex = snapshot;
+
                           balance.add(
                             SwipeResponse(
                               data: BalanceDatum(
@@ -90,21 +89,65 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
               ),
+
+              DotsIndicator(
+                dotsCount: 6,
+              ),
+              // Container(
+              //   margin: EdgeInsets.only(
+              //     bottom: 40.0,
+              //   ),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       CardSlider(
+              //         color: cardSlider ? AppColors.appColor : Colors.black,
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
+          SizedBox(height: 20.0),
           Container(
             child: Padding(
               padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Recent Transactions',
-                  style: TextStyle(
-                    color: AppColors.appColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Recent Transactions',
+                    style: TextStyle(
+                      color: AppColors.appColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                    ),
                   ),
-                ),
+                  SizedBox(width: 15.0),
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.grey[200],
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Pending balance',
+                          style: TextStyle(
+                            fontSize: 10.0,
+                          ),
+                        ),
+                        Text(
+                          '€590,000,600',
+                          style: TextStyle(
+                            fontSize: 10.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

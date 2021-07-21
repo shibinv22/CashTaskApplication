@@ -147,12 +147,12 @@ class _HomeScreenState extends State<HomeScreen>
       body: Column(
         children: [
           Container(
-            alignment: Alignment.center,
             height: 55.0,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
                 Stack(
+                  alignment: Alignment.center,
                   children: [
                     Container(
                       margin: EdgeInsets.only(

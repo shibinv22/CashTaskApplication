@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/network/api.dart';
-import 'package:untitled1/ui/pages/home/copy.dart';
 import 'package:untitled1/ui/pages/otp.dart';
 import 'package:untitled1/ui/widgets/customWidgets.dart';
 import 'package:untitled1/utils/constants.dart';

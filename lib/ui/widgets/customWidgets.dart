@@ -241,3 +241,25 @@ class RecentTransactionsTextField extends StatelessWidget {
     );
   }
 }
+
+class CardSlider extends StatelessWidget {
+  final Color color;
+
+  CardSlider({
+    this.color = Colors.white,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+      width: 25.0,
+      decoration: UnderlineTabIndicator(
+        borderSide: BorderSide(
+          color: color,
+          width: 3.0,
+        ),
+      ),
+    );
+  }
+}

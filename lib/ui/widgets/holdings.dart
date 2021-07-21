@@ -22,7 +22,7 @@ class HoldingsCards extends StatelessWidget {
         bottom: 10.0,
         left: 10.0,
         right: 30.0,
-        top: 10.0,
+        top: 20.0,
       ),
       child: Container(
         width: 300.0,
@@ -101,9 +101,9 @@ class HoldingsCards extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(
-                  top: 12.0,
-                  left: 5.0,
+                margin: EdgeInsets.only(
+                  top: 22.0,
+                  left: 15.0,
                 ),
                 width: 90.0,
                 child: Column(
@@ -118,11 +118,14 @@ class HoldingsCards extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      decoration: UnderlineTabIndicator(
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                          width: 2.0,
-                        ),
+                      decoration: ShapeDecoration(
+                        shape: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 4.0,
+                                style: BorderStyle.solid)),
+                        gradient:
+                            LinearGradient(colors: [Colors.blue, Colors.green]),
                       ),
                     ),
                   ],
@@ -245,9 +248,9 @@ class HoldingsCardsGradient extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(
-                  top: 12.0,
-                  left: 5.0,
+                margin: EdgeInsets.only(
+                  top: 22.0,
+                  left: 15.0,
                 ),
                 width: 90.0,
                 child: Column(
@@ -262,11 +265,12 @@ class HoldingsCardsGradient extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      decoration: UnderlineTabIndicator(
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 2.0,
-                        ),
+                      decoration: ShapeDecoration(
+                        shape: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.white,
+                                width: 4.0,
+                                style: BorderStyle.solid)),
                       ),
                     ),
                   ],
