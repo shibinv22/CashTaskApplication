@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:simple_gesture_detector/simple_gesture_detector.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:untitled1/model/recentTransactions.dart';
 import 'package:untitled1/model/swipeCardsResponse.dart';
@@ -20,12 +21,59 @@ class _DashboardState extends State<Dashboard> {
   late Future<SwipeResponse>? swipeCards;
   late PageController pageControllerDash;
 
+  int currentSelection = 1;
+  final double selectorWidth = 30;
+
+  GlobalKey _key1 = GlobalKey();
+  GlobalKey _key2 = GlobalKey();
+  GlobalKey _key3 = GlobalKey();
+  GlobalKey _key4 = GlobalKey();
+  GlobalKey _key5 = GlobalKey();
+  GlobalKey _key6 = GlobalKey();
+
+  selectedItem(int id) {
+    currentSelection = id;
+    late GlobalKey selectedGlobalKey;
+    switch (id) {
+      case 1:
+        selectedGlobalKey = _key1;
+        break;
+      case 2:
+        selectedGlobalKey = _key2;
+        break;
+      case 3:
+        selectedGlobalKey = _key3;
+        break;
+      case 4:
+        selectedGlobalKey = _key4;
+        break;
+      case 5:
+        selectedGlobalKey = _key5;
+        break;
+      case 6:
+        selectedGlobalKey = _key6;
+        break;
+
+      default:
+    }
+    setWidgetPositionX(selectedGlobalKey);
+    setState(() {});
+  }
+
+  setWidgetPositionX(GlobalKey selectedGlobalKey) {
+    final RenderBox renderBox =
+        selectedGlobalKey.currentContext!.findRenderObject() as RenderBox;
+    final widgetPosition = renderBox.localToGlobal(Offset.zero);
+  }
+
   @override
   void initState() {
     super.initState();
     swipeCards = api.swipeCardsBalance();
     recentTransactions = api.userRecentTransactions();
     pageControllerDash = PageController();
+    WidgetsBinding.instance!
+        .addPostFrameCallback((_) => setWidgetPositionX(_key1));
   }
 
   @override
@@ -70,7 +118,8 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           );
                         }
-                        return ListView(
+                        return PageView(
+                          controller: pageControllerDash,
                           children:
                               balance.map((e) => userBalance(e.data)).toList(),
                         );
@@ -92,7 +141,7 @@ class _DashboardState extends State<Dashboard> {
                 controller: pageControllerDash,
                 count: 6,
                 effect: ExpandingDotsEffect(
-                  activeDotColor: Colors.greenAccent,
+                  activeDotColor: Colors.teal,
                   dotColor: Colors.grey,
                   dotHeight: 12.0,
                 ),
@@ -298,30 +347,37 @@ class _DashboardState extends State<Dashboard> {
   Widget userBalance(data) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: PageView(
-        controller: pageControllerDash,
+      child: Row(
         children: [
           //Total holdings
-          MaterialButton(
-            onPressed: () {},
-            child: HoldingsCardsGradient(
-              amount: '€ ' + data.EUR.toString(),
-              title: ('Total Holdings (EUR)'),
-              image: Image.asset(
-                Images.eurWhite,
-                height: 40.0,
-                width: 40.0,
+          SimpleGestureDetector(
+            onHorizontalSwipe: _onHorizontalSwipe,
+            child: MaterialButton(
+              key: _key1,
+              onPressed: () {},
+              child: HoldingsCardsGradient(
+                amount: '€ ' + data.EUR.toString(),
+                title: ('Total Holdings (EUR)'),
+                image: Image.asset(
+                  Images.eurWhite,
+                  height: 40.0,
+                  width: 40.0,
+                ),
               ),
             ),
           ),
           //Euro Wallet
-          HoldingsCards(
-            amount: '€ ' + data.EUR.toString(),
-            title: 'Euro Wallet',
-            image: Image.asset(
-              Images.eurGreen,
-              height: 40.0,
-              width: 40.0,
+          MaterialButton(
+            key: _key2,
+            onPressed: () {},
+            child: HoldingsCards(
+              amount: '€ ' + data.EUR.toString(),
+              title: 'Euro Wallet',
+              image: Image.asset(
+                Images.eurGreen,
+                height: 40.0,
+                width: 40.0,
+              ),
             ),
           ),
           //USD Wallet
@@ -370,5 +426,15 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
     );
+  }
+
+  void _onHorizontalSwipe(SwipeDirection direction) {
+    setState(() {
+      if (direction == SwipeDirection.left) {
+        print('Swiped left!');
+      } else {
+        print('Swiped right!');
+      }
+    });
   }
 }
